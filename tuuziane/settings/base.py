@@ -117,7 +117,6 @@ TEMPLATES = [
                 "oscar.apps.search.context_processors.search_form",
                 "oscar.apps.checkout.context_processors.checkout",
                 "oscar.apps.communication.notifications.context_processors.notifications",
-                "oscar.core.search.context_processors.metadata",
             ],
         },
     },
