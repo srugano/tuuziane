@@ -112,9 +112,6 @@ package-lock.json
 # Uglified JavaScript
 dist/
 
-# Staticfiles
-sitestatic/
-
 media/
 
 # local settings
