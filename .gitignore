@@ -12,6 +12,7 @@ env/
 build/
 develop-eggs/
 dist/
+static/
 downloads/
 eggs/
 .eggs/
@@ -111,9 +112,6 @@ package-lock.json
 # Uglified JavaScript
 dist/
 
-# Staticfiles
-sitestatic/
-
 media/
 
 # local settings
@@ -141,3 +139,4 @@ server.key*
 #
 apiconfig.ini
 .idea/
+.aider*
