@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "wagtail.snippets",
     "wagtail.documents",
     "wagtail.images",
+    "haystack",  # Required for search https://docs.wagtail.org/en/stable/reference/management_commands.html#wagtail-update-index
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
@@ -78,7 +79,6 @@ INSTALLED_APPS = [
     "oscar.apps.dashboard.communications.apps.CommunicationsDashboardConfig",
     "oscar.apps.dashboard.shipping.apps.ShippingDashboardConfig",
     "widget_tweaks",
-    "haystack",
     "treebeard",
     "sorl.thumbnail",
     "django_tables2",
@@ -245,10 +245,29 @@ OSCAR_SHOP_NAME = "Tuuziane"
 
 HAYSTACK_CONNECTIONS = {
     "default": {
-        "ENGINE": "haystack.backends.solr_backend.SolrEngine",
-        "URL": "http://127.0.0.1:8983/solr",
-        "INCLUDE_SPELLING": True,
+        "ENGINE": "haystack.backends.simple_backend.SimpleEngine",
+        # "ENGINE": "haystack.backends.solr_backend.SolrEngine",
+        # "URL": "http://127.0.0.1:8983/solr/sandbox",
+        # "ADMIN_URL": "http://127.0.0.1:8983/solr/admin/cores",
+        # "INCLUDE_SPELLING": True,
+        # "COMMIT_WITHIN": 500,
     }
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+OSCAR_THUMBNAIL_DEBUG = True
+
+LOGGING = {
+    "version": 1,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "haystack": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+    },
+}
