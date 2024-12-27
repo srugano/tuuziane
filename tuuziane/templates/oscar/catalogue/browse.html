@@ -3,7 +3,8 @@
 {% load basket_tags %}
 {% load category_tags %}
 {% load product_tags %}
-{% block layout %}
+
+{% block breadcrumb %}
     <!-- breadcrumb start -->
     <div class="block-header block-header--has-breadcrumb block-header--has-title">
         <div class="container">
@@ -12,7 +13,7 @@
                     <ol class="breadcrumb__list">
                         <li class="breadcrumb__spaceship-safe-area" role="presentation"></li>
                         <li class="breadcrumb__item breadcrumb__item--parent breadcrumb__item--first">
-                            <a href="index.html" class="breadcrumb__item-link">Home</a>
+                            <a href="{{ homepage_url }}" class="breadcrumb__item-link">Home</a>
                         </li>
                         <li class="breadcrumb__item breadcrumb__item--parent">
                             <a href="" class="breadcrumb__item-link">Breadcrumb</a>
@@ -29,11 +30,14 @@
         </div>
     </div>
     <!-- breadcrumb end -->
+{% endblock breadcrumb %}
+{% block layout %}
+
     <div class="block-split block-split--has-sidebar">
         <div class="container">
             <div class="block-split__row row no-gutters">
                 <!-- categories sidebar start -->
-                {% include "oscar/catalogue/category.html" %}
+                {% include "oscar/catalogue/categories.html" %}
                 <!-- categories sidebar end -->
                 <div class="block-split__item block-split__item-content col-auto">
                     <div class="block">
