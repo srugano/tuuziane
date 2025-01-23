@@ -140,3 +140,5 @@ server.key*
 apiconfig.ini
 .idea/
 .aider*
+.envrc
+fixtures/images.tar.gz
