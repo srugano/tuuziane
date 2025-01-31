@@ -1,35 +1,137 @@
-@import './base.css';
+@import "./base.css";
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
+                              TOP-BAR
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::; */
+
+::-webkit-scrollbar {
+  width: 12px;
+  /* Width of the scrollbar */
 }
 
-a,
-.green {
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0f3640;
+  /* Thumb color */
+  border-radius: 10px;
+  /* Roundness of the scroll thumb */
+  border: 2px solid #f1f1f1;
+  /* Padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0f3640;
+  /* Thumb color on hover */
+}
+
+nav {
+  background-color: #fff;
+  color: #0f3640;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+nav.scrolled {
+  background-color: #0f3640;
+  color: #fff;
+  /* Added opacity transition */
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  opacity: 1;
+  /* Ensure full opacity when scrolled */
+}
+
+nav.scrolled a {
+  color: #ffffff;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+  width: 100%;
+}
+nav a {
+  color: #0f3640;
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+nav .scrolled > a {
+  color: #a02323;
+  /* Added opacity transition */
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  opacity: 1;
+  /* Ensure full opacity when scrolled */
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
+                              general
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::; */
+
+
+
+
+input:focus, textarea:focus, select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+input{  box-shadow: none !important;
+  border-color: transparent !important;}
+
+
+  ::placeholder {
+    color: rgb(177, 177, 177);
+    font-style: italic;
+    font-size: 12px;
+}
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
+                              section-1 - home
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::; */
+section-1 main {
+  background-image: url("./img/b1.jpg");
+  min-height: 700px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+section-1 sub-section {
+  position: relative;
+  z-index: 3;
+  top: -420px;
+  border-radius: 80px;
+}
+
+input {
+  width: 100px;
+}
+
+
+
+.bg-orange{
+  background-color: var(--vt-c-orage-1);
+}
+
+
+.cat{
+  
+  width: 100px;
+  height: 100px;
 }
