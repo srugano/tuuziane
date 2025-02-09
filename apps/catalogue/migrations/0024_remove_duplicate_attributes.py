@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 def get_value(attribute_value):
     typ = attribute_value.attribute.type
-    field_name = "value_%s" % typ
+    field_name = f"value_{typ}"
     value = getattr(attribute_value, field_name)
     if hasattr(value, "all"):
         value = value.all()
