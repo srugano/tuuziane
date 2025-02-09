@@ -11,6 +11,7 @@ dependencies = [
     "pysolr>=3.10.0",
     "python-dotenv>=1.0.1",
     "dj-database-url>=2.3.0",
+    "psycopg2-binary>=2.9.10",
 ]
 
 [tool.uv]
