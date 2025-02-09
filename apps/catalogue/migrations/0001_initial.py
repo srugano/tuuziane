@@ -618,7 +618,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name="productcategory",
-            unique_together=set([("product", "category")]),
+            unique_together={("product", "category")},
         ),
         migrations.AlterUniqueTogether(
             name="productattributevalue",
