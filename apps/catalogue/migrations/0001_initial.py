@@ -610,7 +610,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name="productrecommendation",
-            unique_together=set([("primary", "recommendation")]),
+            unique_together={("primary", "recommendation")},
         ),
         migrations.AlterUniqueTogether(
             name="productimage",
@@ -618,7 +618,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name="productcategory",
-            unique_together=set([("product", "category")]),
+            unique_together={("product", "category")},
         ),
         migrations.AlterUniqueTogether(
             name="productattributevalue",
