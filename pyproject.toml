@@ -2,11 +2,14 @@
 name = "tuuziane"
 version = "0.1.0"
 description = "Add your description here"
-readme = "README.md"
 requires-python = ">=3.12"
+readme = "README.md"
 dependencies = [
     "django-oscar[sorl-thumbnail]>=3.2.5",
     "django>=4.2,<5.1",
     "wagtail>=6.1,<6.2",
     "pysolr>=3.10.0",
 ]
+
+[tool.uv]
+package = false
