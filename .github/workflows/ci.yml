@@ -42,7 +42,7 @@ jobs:
 
       - name: Deploy to DigitalOcean (Main Branch Only)
         if: github.ref == 'refs/heads/main'
-        uses: appleboy/ghaction-ssh@master
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.DIGITALOCEAN_IP }}
           username: ${{ secrets.DIGITALOCEAN_USERNAME }}
