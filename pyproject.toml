@@ -21,6 +21,20 @@ package = false
 
 [tool.black]
 line-length = 120
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
@@ -50,7 +64,6 @@ exclude = [
     "dist",
     "node_modules",
     "site-packages",
-    "migrations",
     "venv",
 ]
 

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0013_auto_20170821_1548"),
     ]
@@ -13,9 +12,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="product",
             name="date_created",
-            field=models.DateTimeField(
-                auto_now_add=True, db_index=True, verbose_name="Date created"
-            ),
+            field=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Date created"),
         ),
         migrations.AlterField(
             model_name="productimage",

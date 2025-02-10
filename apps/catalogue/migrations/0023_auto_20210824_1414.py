@@ -5,7 +5,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0022_auto_20210210_0539"),
     ]
@@ -14,8 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="product",
             name="slug",
-            field=oscar.models.fields.slugfield.SlugField(
-                max_length=255, verbose_name="Slug"
-            ),
+            field=oscar.models.fields.slugfield.SlugField(max_length=255, verbose_name="Slug"),
         ),
     ]

@@ -17,7 +17,6 @@ def migrate_product_options(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0018_auto_20191220_0920"),
     ]
@@ -26,9 +25,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="option",
             name="required",
-            field=models.BooleanField(
-                default=False, verbose_name="Is option required?"
-            ),
+            field=models.BooleanField(default=False, verbose_name="Is option required?"),
         ),
         migrations.RunPython(migrate_product_options, migrations.RunPython.noop),
         migrations.AlterField(
