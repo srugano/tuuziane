@@ -25,9 +25,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
 
-      - name: Install needed packages
-        run: sudo apt-get install -y exiftool libgraphviz-dev
-
       - name: Install/Update uv
         uses: astral-sh/setup-uv@v3
 

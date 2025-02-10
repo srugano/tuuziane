@@ -19,6 +19,9 @@ dependencies = [
 [tool.uv]
 package = false
 
+[tool.black]
+line-length = 120
+
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
