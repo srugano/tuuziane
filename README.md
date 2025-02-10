@@ -12,17 +12,17 @@ ABOUT TUUZIANE
 
 ## Configure development environment
 
-**WARNING**  
+**WARNING**
 > Tuuziane implements **security first** policy. It means that configuration default values are "almost" production compliant.
-> 
-> Es. `DEBUG=False` or `SECURE_SSL_REDIRECT=True`. 
-> 
+>
+> Es. `DEBUG=False` or `SECURE_SSL_REDIRECT=True`.
+>
 > Be sure to run `./manage.py env --check` and  `./manage.py env -g all` to check and display your configuration
- 
+
 
 
 ### 1. Clone repo and install requirements
-    git clone https://github.com/srugano/tuuziane 
+    git clone https://github.com/srugano/tuuziane
     pdm venv create 3.11
     pdm install
     pdm venv activate in-project
@@ -30,7 +30,7 @@ ABOUT TUUZIANE
 
 ### 2. configure your environment
 
-Uses `./manage.py env` to configure your environment 
+Uses `./manage.py env` to configure your environment
 
     ./manage.py env > .evnvrc
 
@@ -47,7 +47,7 @@ Customize your env for development:
     export CELERY_TASK_ALWAYS_EAGER=True
 
 
-and check required (and optional) variables to put 
+and check required (and optional) variables to put
 
     ./manage.py env --check
 
@@ -62,6 +62,6 @@ and check required (and optional) variables to put
 
 > If `DEBUG=True` . Note that:
 
->   - If the username is ADMIN_EMAIL you will be superuser 
->   - If username starts with `admin` will be created a superuser   
+>   - If the username is ADMIN_EMAIL you will be superuser
+>   - If username starts with `admin` will be created a superuser
 >   - If username starts with `user`  will be created a standard user (no staff, no admin)
