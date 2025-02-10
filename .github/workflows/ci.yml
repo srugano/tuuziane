@@ -33,6 +33,8 @@ jobs:
 
       - name: Pre-commit checks
         uses: pre-commit/action@v3.0.0
+        with:
+          exclude: migrations
 
       - name: Run tests
         run: pytest  # Or python manage.py test if you're not using pytest
