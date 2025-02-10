@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: recursive  # If you have submodules
+          submodules: recursive
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
@@ -25,8 +25,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
 
-      - name: Install needed packages (if any)
-        run: sudo apt-get install -y exiftool libgraphviz-dev # Example packages
+      - name: Install needed packages
+        run: sudo apt-get install -y exiftool libgraphviz-dev
 
       - name: Install/Update uv
         uses: astral-sh/setup-uv@v3
@@ -34,15 +34,21 @@ jobs:
       - name: Synchronize dependencies with uv
         run: uv sync
 
-      - name: Deploy to DigitalOcean (Master Branch Only)
-        if: github.ref == 'refs/heads/master'
+      - name: Pre-commit checks
+        uses: pre-commit/action@v3.0.0
+
+      - name: Run tests
+        run: pytest  # Or python manage.py test if you're not using pytest
+
+      - name: Deploy to DigitalOcean (Main Branch Only)
+        if: github.ref == 'refs/heads/main'
         uses: appleboy/ghaction-ssh@master
         with:
           host: ${{ secrets.DIGITALOCEAN_IP }}
           username: ${{ secrets.DIGITALOCEAN_USERNAME }}
           key: ${{ secrets.DIGITALOCEAN_PRIVATE_KEY }}
           script: |
-            ssh... "
+            ssh ${{ secrets.DIGITALOCEAN_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} "
               set -e
               cd /var/www/prod/tuuziane
               source /var/www/envs/tuuziane/bin/activate
@@ -50,14 +56,15 @@ jobs:
               uv sync --active
               python manage.py migrate
               python manage.py collectstatic --noinput
-              sudo systemctl restart your-gunicorn-service # Or supervisorctl...
+              export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
+              sudo systemctl restart tuuziane.service
               echo "Deployment to tuuziane.com successful!"
             "
 
       - name: Check application health (version check)
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
-          curl -s https://tuuziane.com/api/version/ | grep "\"version\":" # Or your health check method
+          curl -s https://tuuziane.com/api/version/ | grep "\"version\":"
           if [ $? -ne 0 ]; then
             echo "Health check failed!"
             exit 1
