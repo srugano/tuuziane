@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterUniqueTogether(
             name="attributeoption",
-            unique_together=set([("group", "option")]),
+            unique_together={("group", "option")},
         ),
     ]

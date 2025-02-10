@@ -78,9 +78,7 @@ class Migration(migrations.Migration):
                 ("numchild", models.PositiveIntegerField(default=0)),
                 (
                     "name",
-                    models.CharField(
-                        max_length=255, db_index=True, verbose_name="Name"
-                    ),
+                    models.CharField(max_length=255, db_index=True, verbose_name="Name"),
                 ),
                 (
                     "description",
@@ -98,9 +96,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "slug",
-                    models.SlugField(
-                        max_length=255, editable=False, verbose_name="Slug"
-                    ),
+                    models.SlugField(max_length=255, editable=False, verbose_name="Slug"),
                 ),
                 (
                     "full_name",
@@ -219,15 +215,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "date_created",
-                    models.DateTimeField(
-                        auto_now_add=True, verbose_name="Date created"
-                    ),
+                    models.DateTimeField(auto_now_add=True, verbose_name="Date created"),
                 ),
                 (
                     "date_updated",
-                    models.DateTimeField(
-                        auto_now=True, db_index=True, verbose_name="Date updated"
-                    ),
+                    models.DateTimeField(auto_now=True, db_index=True, verbose_name="Date updated"),
                 ),
                 (
                     "is_discountable",
@@ -479,21 +471,15 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "requires_shipping",
-                    models.BooleanField(
-                        default=True, verbose_name="Requires shipping?"
-                    ),
+                    models.BooleanField(default=True, verbose_name="Requires shipping?"),
                 ),
                 (
                     "track_stock",
-                    models.BooleanField(
-                        default=True, verbose_name="Track stock levels?"
-                    ),
+                    models.BooleanField(default=True, verbose_name="Track stock levels?"),
                 ),
                 (
                     "options",
-                    models.ManyToManyField(
-                        verbose_name="Options", to="catalogue.Option", blank=True
-                    ),
+                    models.ManyToManyField(verbose_name="Options", to="catalogue.Option", blank=True),
                 ),
             ],
             options={
@@ -526,9 +512,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "caption",
-                    models.CharField(
-                        max_length=200, verbose_name="Caption", blank=True
-                    ),
+                    models.CharField(max_length=200, verbose_name="Caption", blank=True),
                 ),
                 (
                     "display_order",
@@ -540,9 +524,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "date_created",
-                    models.DateTimeField(
-                        auto_now_add=True, verbose_name="Date created"
-                    ),
+                    models.DateTimeField(auto_now_add=True, verbose_name="Date created"),
                 ),
                 (
                     "product",
@@ -620,10 +602,7 @@ class Migration(migrations.Migration):
             name="productcategory",
             unique_together={("product", "category")},
         ),
-        migrations.AlterUniqueTogether(
-            name="productattributevalue",
-            unique_together=set([("attribute", "product")]),
-        ),
+        migrations.AlterUniqueTogether(name="productattributevalue", unique_together={("attribute", "product")}),
         migrations.AddField(
             model_name="productattribute",
             name="product_class",

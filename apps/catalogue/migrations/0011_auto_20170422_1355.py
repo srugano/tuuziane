@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterUniqueTogether(
             name="productimage",
-            unique_together=set([]),
+            unique_together=set(),
         ),
     ]
