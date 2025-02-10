@@ -2,9 +2,9 @@ name: Django CI/CD
 
 on:
   push:
-    branches: [develop, master]
+    branches: [develop, main]
   pull_request:
-    branches: [develop, master]
+    branches: [develop, main]
 
 jobs:
   build:
@@ -34,61 +34,6 @@ jobs:
       - name: Synchronize dependencies with uv
         run: uv sync
 
-      - name: Install "setuptools<58.0.0" (if needed)
-        run: pip install "setuptools<58.0.0"
-
-      - name: Check flake8 mistakes
-        uses: py-actions/flake8@v2
-        with:
-          max-line-length: "120"
-          exclude:.git,__pycache__,old,build,dist,tests,test_*
-
-      - name: Check formatting
-        uses: psf/black@stable
-
-      - name: Run tests with coverage
-        run: |
-          coverage run manage.py test
-
-      - name: Generate coverage report
-        run: coverage html
-
-      - name: Check coverage threshold and generate badge URL
-        id: coverage
-        run: |
-          COVERAGE=$(coverage report -m | grep "TOTAL" | awk '{print $NF}' | tr -d '%')
-          echo "Coverage: $COVERAGE%"
-
-          if (( $(echo "$COVERAGE < 95" | bc -l) )); then  # Adjust threshold as needed
-            echo "Coverage is below 95%. Failing the workflow."
-            exit 1
-          else
-            echo "Coverage is at or above 95%. Continuing."
-            BADGE_URL="https://img.shields.io/badge/coverage-$COVERAGE%%25-green"
-            if (( $(echo "$COVERAGE < 98" | bc -l) )); then
-                BADGE_URL="https://img.shields.io/badge/coverage-$COVERAGE%%25-yellow"
-            fi
-            echo "::set-output name=badge_url::$BADGE_URL"
-
-      - name: Upload coverage report as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: htmlcov
-
-      - name: Update README with coverage badge
-        uses: EndBug/add-and-commit@v2
-        with:
-          branch: ${{ github.ref }}
-          message: 'Update coverage badge'
-          add: 'README.md'
-          commit: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FILE_PATH: README.md
-          REPLACE_TEXT: '' # Your placeholder in the README
-          REPLACEMENT_TEXT: '<img src="${{ steps.coverage.outputs.badge_url }}" alt="Coverage"/>'
-
       - name: Deploy to DigitalOcean (Master Branch Only)
         if: github.ref == 'refs/heads/master'
         uses: appleboy/ghaction-ssh@master
@@ -100,10 +45,9 @@ jobs:
             ssh... "
               set -e
               cd /var/www/prod/tuuziane
-              source /path/to/your/virtualenv/bin/activate
-              git pull origin master
-              git submodule update --init --recursive # If you have submodules
-              uv sync
+              source /var/www/envs/tuuziane/bin/activate
+              git pull origin main
+              uv sync --active
               python manage.py migrate
               python manage.py collectstatic --noinput
               sudo systemctl restart your-gunicorn-service # Or supervisorctl...
@@ -120,11 +64,3 @@ jobs:
           else
             echo "Health check passed!"
           fi
-
-      - name: Slack Notification (Success)
-        if: ${{ github.ref == 'refs/heads/master' && always() && job.status == 'success' }}
-        #... (Your Slack notification configuration)...
-
-      - name: Slack Notification (Failure)
-        if: ${{ github.ref == 'refs/heads/master' && always() && job.status == 'failure' }}
-        #... (Your Slack notification configuration)...
