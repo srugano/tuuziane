@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0019_option_required"),
     ]
@@ -26,8 +25,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="option",
             name="required",
-            field=models.BooleanField(
-                default=False, verbose_name="Is this option required?"
-            ),
+            field=models.BooleanField(default=False, verbose_name="Is this option required?"),
         ),
     ]

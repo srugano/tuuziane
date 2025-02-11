@@ -5,7 +5,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0006_auto_20150807_1725"),
     ]
@@ -13,6 +12,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterUniqueTogether(
             name="attributeoption",
-            unique_together=set([("group", "option")]),
+            unique_together={("group", "option")},
         ),
     ]

@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0015_product_is_public"),
     ]
@@ -20,29 +19,21 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="productattributevalue",
             name="value_date",
-            field=models.DateField(
-                blank=True, db_index=True, null=True, verbose_name="Date"
-            ),
+            field=models.DateField(blank=True, db_index=True, null=True, verbose_name="Date"),
         ),
         migrations.AlterField(
             model_name="productattributevalue",
             name="value_datetime",
-            field=models.DateTimeField(
-                blank=True, db_index=True, null=True, verbose_name="DateTime"
-            ),
+            field=models.DateTimeField(blank=True, db_index=True, null=True, verbose_name="DateTime"),
         ),
         migrations.AlterField(
             model_name="productattributevalue",
             name="value_float",
-            field=models.FloatField(
-                blank=True, db_index=True, null=True, verbose_name="Float"
-            ),
+            field=models.FloatField(blank=True, db_index=True, null=True, verbose_name="Float"),
         ),
         migrations.AlterField(
             model_name="productattributevalue",
             name="value_integer",
-            field=models.IntegerField(
-                blank=True, db_index=True, null=True, verbose_name="Integer"
-            ),
+            field=models.IntegerField(blank=True, db_index=True, null=True, verbose_name="Integer"),
         ),
     ]

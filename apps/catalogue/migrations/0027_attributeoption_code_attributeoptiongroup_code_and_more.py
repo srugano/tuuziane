@@ -13,29 +13,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="attributeoption",
             name="code",
-            field=oscar.models.fields.NullCharField(
-                max_length=255, unique=True, verbose_name="Unique identifier"
-            ),
+            field=oscar.models.fields.NullCharField(max_length=255, unique=True, verbose_name="Unique identifier"),
         ),
         migrations.AddField(
             model_name="attributeoptiongroup",
             name="code",
-            field=oscar.models.fields.NullCharField(
-                max_length=255, unique=True, verbose_name="Unique identifier"
-            ),
+            field=oscar.models.fields.NullCharField(max_length=255, unique=True, verbose_name="Unique identifier"),
         ),
         migrations.AddField(
             model_name="category",
             name="code",
-            field=oscar.models.fields.NullCharField(
-                max_length=255, unique=True, verbose_name="Code"
-            ),
+            field=oscar.models.fields.NullCharField(max_length=255, unique=True, verbose_name="Code"),
         ),
         migrations.AddField(
             model_name="productimage",
             name="code",
-            field=oscar.models.fields.NullCharField(
-                max_length=255, unique=True, verbose_name="Code"
-            ),
+            field=oscar.models.fields.NullCharField(max_length=255, unique=True, verbose_name="Code"),
         ),
     ]
