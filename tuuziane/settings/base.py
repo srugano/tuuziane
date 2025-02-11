@@ -89,6 +89,12 @@ INSTALLED_APPS = [
     "treebeard",
     "sorl.thumbnail",
     "django_tables2",
+    "health_check",  # required
+    "health_check.db",  # stock Django health checkers
+    "health_check.cache",
+    "health_check.storage",
+    "health_check.contrib.migrations",
+    "health_check.contrib.psutil",  # disk and memory utilization; requires psutil
 ]
 
 SITE_ID = 1

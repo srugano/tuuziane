@@ -11,6 +11,7 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
+    path(r"health/", include("health_check.urls")),
     path(
         "about/",
         TemplateView.as_view(template_name="header-spaceship-variant-one.html"),
