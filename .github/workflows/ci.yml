@@ -49,7 +49,7 @@ jobs:
           username: ${{ secrets.DIGITALOCEAN_USERNAME }}
           key: ${{ secrets.DIGITALOCEAN_PRIVATE_KEY }}
           script: |
-            ssh ${{ secrets.DIGITALOCEAN_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} "
+            ssh -o StrictHostKeyChecking=no -vvv ${{ secrets.DIGITALOCEAN_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} "
               set -e
               cd /var/www/prod/tuuziane
               source /var/www/envs/tuuziane/bin/activate
