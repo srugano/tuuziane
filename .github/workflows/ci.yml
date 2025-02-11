@@ -52,6 +52,8 @@ jobs:
           script: |
               set -e
               whoami
+              echo "Deploying to tuuziane.com with Path"
+              echo $PATH
               cd /var/www/prod/tuuziane
               source /var/www/envs/tuuziane/bin/activate
               git pull origin main
