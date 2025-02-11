@@ -36,11 +36,10 @@ jobs:
       - name: Synchronize dependencies with uv
         run: uv sync
 
-      - name: Activate Virtual Environment
-        run: source .venv/bin/activate
-
-      - name: Run tests
-        run: pytest tests/
+      - name: Activate Virtual Environment and Run Tests
+        run: |
+          source .venv/bin/activate
+          .venv/bin/pytest tests/
 
       - name: Deploy to DigitalOcean (Main Branch Only)
         if: github.ref == 'refs/heads/main'
