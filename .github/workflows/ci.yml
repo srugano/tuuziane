@@ -69,12 +69,12 @@ jobs:
               sudo systemctl restart tuuziane.service
               echo "Deployment to tuuziane.com successful!"
 
-      - name: Check application health (version check)
+      - name: Check application health
         if: github.ref == 'refs/heads/main'
         run: |
-          curl -s https://tuuziane.com/api/version/ | grep "\"version\":"
-          if [ $? -ne 0 ]; then
-            echo "Health check failed!"
+          response=$(curl -s -H "Accept: application/json" https://tuuziane.com/health/)
+          if echo "$response" | jq '. | to_entries | map(select(.value!= "working")) | length' | grep -q '^*$'; then
+            echo "Health check failed! Response: $response"
             exit 1
           else
             echo "Health check passed!"
