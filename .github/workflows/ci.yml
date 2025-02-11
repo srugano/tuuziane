@@ -25,16 +25,19 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
 
+      - name: Pre-commit checks
+        uses: pre-commit/action@v3.0.0
+        with:
+          exclude: migrations
+
       - name: Install/Update uv
         uses: astral-sh/setup-uv@v3
 
       - name: Synchronize dependencies with uv
         run: uv sync
 
-      - name: Pre-commit checks
-        uses: pre-commit/action@v3.0.0
-        with:
-          exclude: migrations
+      - name: Activate Virtual Environment
+        run: source .venv/bin/activate
 
       - name: Run tests
         run: pytest tests/
