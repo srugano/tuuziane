@@ -32,7 +32,6 @@ def add_ancestor_slugs(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0002_auto_20150217_1221"),
     ]
