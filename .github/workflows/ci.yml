@@ -47,10 +47,11 @@ jobs:
         with:
           host: ${{ secrets.DIGITALOCEAN_IP }}
           username: ${{ secrets.DIGITALOCEAN_USERNAME }}
-          key: ${{ secrets.DIGITALOCEAN_PRIVATE_KEY }}
+          password: ${{ secrets.DIGITALOCEAN_PASSWORD }}
+          port: ${{ secrets.DIGITALOCEAN_PORT }}
           script: |
-            ssh -o StrictHostKeyChecking=no -vvv ${{ secrets.DIGITALOCEAN_USERNAME }}@${{ secrets.DIGITALOCEAN_IP }} "
               set -e
+              whoami
               cd /var/www/prod/tuuziane
               source /var/www/envs/tuuziane/bin/activate
               git pull origin main
@@ -60,7 +61,6 @@ jobs:
               export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
               sudo systemctl restart tuuziane.service
               echo "Deployment to tuuziane.com successful!"
-            "
 
       - name: Check application health (version check)
         if: github.ref == 'refs/heads/main'
