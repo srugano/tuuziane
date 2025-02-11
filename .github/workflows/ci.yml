@@ -53,7 +53,7 @@ jobs:
               set -e
               whoami
               echo "Deploying to tuuziane.com with Path"
-              echo $PATH
+              export PATH="$HOME/.local/bin:$PATH"
               cd /var/www/prod/tuuziane
               echo "PATH before activation: $PATH"
               source /var/www/envs/tuuziane/bin/activate
