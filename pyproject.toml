@@ -14,6 +14,8 @@ dependencies = [
     "psycopg2-binary>=2.9.10",
     "gunicorn>=23.0.0",
     "pre-commit>=4.1.0",
+    "pytest>=8.3.4",
+    "pytest-django>=4.10.0",
 ]
 
 [tool.uv]
@@ -114,3 +116,6 @@ docstring-code-format = false
 # This only has an effect when the `docstring-code-format` setting is
 # enabled.
 docstring-code-line-length = "dynamic"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tuuziane.settings.dev"

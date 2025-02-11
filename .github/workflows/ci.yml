@@ -37,7 +37,7 @@ jobs:
           exclude: migrations
 
       - name: Run tests
-        run: pytest  # Or python manage.py test if you're not using pytest
+        run: pytest tests/
 
       - name: Deploy to DigitalOcean (Main Branch Only)
         if: github.ref == 'refs/heads/main'
