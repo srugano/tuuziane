@@ -55,7 +55,12 @@ jobs:
               echo "Deploying to tuuziane.com with Path"
               echo $PATH
               cd /var/www/prod/tuuziane
+              echo "PATH before activation: $PATH"
               source /var/www/envs/tuuziane/bin/activate
+              echo "PATH after activation: $PATH"
+              which uv
+              echo "VIRTUAL_ENV: $VIRTUAL_ENV"
+              echo "Hello"  # Test a simple command
               git pull origin main
               uv sync --active
               python manage.py migrate
