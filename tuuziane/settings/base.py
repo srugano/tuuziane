@@ -273,7 +273,7 @@ HAYSTACK_CONNECTIONS = {
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-OSCAR_THUMBNAIL_DEBUG = True
+OSCAR_THUMBNAIL_DEBUG = DEBUG
 
 LOGGING = {
     "version": 1,
@@ -288,4 +288,19 @@ LOGGING = {
             "level": "DEBUG",
         },
     },
+}
+
+
+OSCAR_INITIAL_ORDER_STATUS = "Pending"
+OSCAR_INITIAL_LINE_STATUS = "Pending"
+OSCAR_ORDER_STATUS_PIPELINE = {
+    "Pending": (
+        "Being processed",
+        "Cancelled",
+    ),
+    "Being processed": (
+        "Processed",
+        "Cancelled",
+    ),
+    "Cancelled": (),
 }
