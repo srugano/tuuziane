@@ -6,9 +6,9 @@ ABOUT TUUZIANE
 
 ### System Requirements
 
-- python 3.11
+- python 3.12
 - [direnv](https://direnv.net/) - not mandatory but strongly recommended
-- [pdm](https://pdm.fming.dev/2.9/)
+- [uv](https://github.com/uvproject/uv)
 
 ## Configure development environment
 
@@ -23,9 +23,9 @@ ABOUT TUUZIANE
 
 ### 1. Clone repo and install requirements
     git clone https://github.com/srugano/tuuziane
-    pdm venv create 3.11
-    pdm install
-    pdm venv activate in-project
+    uv create 3.12
+    uv install
+    uv activate in-project
     pre-commit install
 
 ### 2. configure your environment
