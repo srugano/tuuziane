@@ -15,32 +15,31 @@
                         <div class="site-footer__widget footer-contacts">
                             <h5 class="footer-contacts__title">Contact Us</h5>
                             <div class="footer-contacts__text">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Integer in feugiat lorem.
+                                We are a marketplace based in Bujumbura, Burundi. If you have any questions or need assistance, please don't hesitate to contact us.
                             </div>
                             <address class="footer-contacts__contacts">
                                 <dl>
                                     <dt>Phone Number</dt>
                                     <dd>
-                                        +1 (800) 060-07-30
+                                        +257 68 123 456
                                     </dd>
                                 </dl>
                                 <dl>
                                     <dt>Email Address</dt>
                                     <dd>
-                                        red-parts@example.com
+                                        info@tuuziane.com
                                     </dd>
                                 </dl>
                                 <dl>
                                     <dt>Our Location</dt>
                                     <dd>
-                                        715 Fake Street, New York 10021 USA
+                                        Bujumbura, Burundi
                                     </dd>
                                 </dl>
                                 <dl>
                                     <dt>Working Hours</dt>
                                     <dd>
-                                        Mon-Sat 10:00pm - 7:00pm
+                                        Mon-Fri 8:00am - 5:00pm
                                     </dd>
                                 </dl>
                             </address>
@@ -51,30 +50,25 @@
                             <h5 class="footer-links__title">Information</h5>
                             <ul class="footer-links__list">
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">About
-                                    Us</a>
+                                    <a href="{% url 'about' %}" class="footer-links__link">About Us</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Delivery
-                                    Information</a>
+                                    <a href="{% url 'delivery_info' %}" class="footer-links__link">Delivery Information</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Privacy
-                                    Policy</a>
+                                    <a href="{% url 'privacy_policy' %}" class="footer-links__link">Privacy Policy</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Brands</a>
+                                    <a href="{% url 'brands' %}" class="footer-links__link">Brands</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Contact
-                                    Us</a>
+                                    <a href="{% url 'contact_us' %}" class="footer-links__link">Contact Us</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Returns</a>
+                                    <a href="{% url 'returns' %}" class="footer-links__link">Returns</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Site
-                                    Map</a>
+                                    <a href="{% url 'sitemap' %}" class="footer-links__link">Site Map</a>
                                 </li>
                             </ul>
                         </div>
@@ -84,29 +78,25 @@
                             <h5 class="footer-links__title">My Account</h5>
                             <ul class="footer-links__list">
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Store
-                                    Location</a>
+                                    <a href="{% url 'store_location' %}" class="footer-links__link">Store Location</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Order
-                                    History</a>
+                                    <a href="{% url 'order_history' %}" class="footer-links__link">Order History</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Wish
-                                    List</a>
+                                    <a href="{% url 'wish_list' %}" class="footer-links__link">Wish List</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Newsletter</a>
+                                    <a href="{% url 'newsletter' %}" class="footer-links__link">Newsletter</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Specials</a>
+                                    <a href="{% url 'specials' %}" class="footer-links__link">Specials</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Gift
-                                    Certificates</a>
+                                    <a href="{% url 'gift_certificates' %}" class="footer-links__link">Gift Certificates</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="" class="footer-links__link">Affiliate</a>
+                                    <a href="{% url 'affiliate' %}" class="footer-links__link">Affiliate</a>
                                 </li>
                             </ul>
                         </div>
@@ -115,37 +105,37 @@
                         <div class="site-footer__widget footer-newsletter">
                             <h5 class="footer-newsletter__title">Newsletter</h5>
                             <div class="footer-newsletter__text">
-                                Enter your email address below to subscribe to
-                                our newsletter and keep up to date with discounts and special offers.
+                                Subscribe to our newsletter to stay updated with the latest offers and promotions.
                             </div>
-                            <form action="" class="footer-newsletter__form">
+                            <form action="{% url 'subscribe' %}" method="post" class="footer-newsletter__form">
+                                {% csrf_token %}
                                 <label class="sr-only" for="footer-newsletter-address">Email Address</label>
-                                <input type="text"
+                                <input type="email"
                                        class="footer-newsletter__form-input"
                                        id="footer-newsletter-address"
+                                       name="email"
                                        placeholder="Email Address...">
                                 <button class="footer-newsletter__form-button">Subscribe</button>
                             </form>
                             <div class="footer-newsletter__text footer-newsletter__text--social">
-                                Follow us on
-                                social networks
+                                Follow us on social networks
                             </div>
                             <div class="footer-newsletter__social-links social-links">
                                 <ul class="social-links__list">
                                     <li class="social-links__item social-links__item--facebook">
-                                        <a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="https://www.facebook.com/tuuziane" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                     </li>
                                     <li class="social-links__item social-links__item--twitter">
-                                        <a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-twitter"></i></a>
+                                        <a href="https://twitter.com/tuuziane" target="_blank"><i class="fab fa-twitter"></i></a>
                                     </li>
                                     <li class="social-links__item social-links__item--youtube">
-                                        <a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-youtube"></i></a>
+                                        <a href="https://www.youtube.com/user/Tuuziane" target="_blank"><i class="fab fa-youtube"></i></a>
                                     </li>
                                     <li class="social-links__item social-links__item--instagram">
-                                        <a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-instagram"></i></a>
+                                        <a href="https://www.instagram.com/tuuziane/" target="_blank"><i class="fab fa-instagram"></i></a>
                                     </li>
                                     <li class="social-links__item social-links__item--rss">
-                                        <a href="https://themeforest.net/user/kos9" target="_blank"><i class="fas fa-rss"></i></a>
+                                        <a href="{% url 'rss_feed' %}" target="_blank"><i class="fas fa-rss"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -158,7 +148,7 @@
             <div class="container">
                 <div class="site-footer__bottom-row">
                     <div class="site-footer__copyright">
-                        <!-- copyright --> Powered by HTML — Designed by <a href="https://themeforest.net/user/kos9" target="_blank">Kos</a><!-- copyright / end -->
+                        <!-- copyright --> © 2023 Tuuziane. All rights reserved. Designed by <a href="https://ubuviz.com/user/kos9" target="_blank">Kos</a><!-- copyright / end -->
                     </div>
                     <div class="site-footer__payments">
                         <img src="{% static 'images/payments.png' %}" alt="">
