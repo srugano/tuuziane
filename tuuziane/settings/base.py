@@ -8,6 +8,7 @@ env = environ.Env(
     DEBUG=(bool, False),
     SECRET_KEY=(str, "your-default-secret-key"),
     ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
+    DATABASE_URL=(str, "sqlite:///db.sqlite3"),
 )
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -139,21 +140,8 @@ WSGI_APPLICATION = "tuuziane.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    # read os.environ['DATABASE_URL'] and raises
-    # ImproperlyConfigured exception if not found
-    #
-    # The db() method is an alias for db_url().
-    "default": env.db(),
-    # read os.environ['SQLITE_URL']
-    "extra": env.db_url("SQLITE_URL", default="sqlite:////tmp/my-tmp-sqlite.db"),
-}
-
-# Override with environment variable if set (for production)
-if "DATABASE_URL" in os.environ:
-    DATABASES["default"] = dj_database_url.parse(
-        os.environ["DATABASE_URL"]
-    )  # Or your custom database URL parsing if not using dj-database-url
+# Database
+DATABASES = {"default": dj_database_url.config(default=env("DATABASE_URL"))}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
