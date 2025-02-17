@@ -4,7 +4,11 @@ import dj_database_url
 import environ
 from oscar.defaults import *
 
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(
+    DEBUG=(bool, False),
+    SECRET_KEY=(str, "your-default-secret-key"),
+    ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
+)
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Set the project base directory
