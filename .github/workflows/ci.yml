@@ -40,6 +40,8 @@ jobs:
         run: |
           source .venv/bin/activate
           .venv/bin/pytest tests/
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
       - name: Deploy to DigitalOcean (Main Branch Only)
         if: github.ref == 'refs/heads/main'
