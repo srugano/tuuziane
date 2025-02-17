@@ -70,7 +70,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           response=$(curl -s -H "Accept: application/json" https://tuuziane.com/health/)
-          if echo "$response" | jq '. | to_entries | map(select(.value!= "working")) | length' | grep -q '^*$'; then
+          if ! echo "$response" | jq -e 'all(. == "working")'; then
             echo "Health check failed! Response: $response"
             exit 1
           else

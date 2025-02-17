@@ -291,3 +291,5 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     ),
     "Cancelled": (),
 }
+
+APPEND_SLASH = True
