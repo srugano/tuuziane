@@ -9,6 +9,7 @@ env = environ.Env(
     SECRET_KEY=(str, "your-default-secret-key"),
     ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
     DATABASE_URL=(str, "sqlite:///db.sqlite3"),
+    WAGTAILADMIN_BASE_URL=(str, "http://localhost"),
 )
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -86,6 +87,7 @@ INSTALLED_APPS = [
     "treebeard",
     "sorl.thumbnail",
     "django_tables2",
+    "homepage",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
     "health_check.cache",
@@ -222,7 +224,7 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = "http://tuuziane.ubuviz.com"
+WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL")
 
 # Allowed file extensions for documents in the document library.
 # This can be omitted to allow all files, but note that this may present a security risk

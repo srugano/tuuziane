@@ -50,25 +50,25 @@
                             <h5 class="footer-links__title">Information</h5>
                             <ul class="footer-links__list">
                                 <li class="footer-links__item">
-                                    <a href="{% url 'about' %}" class="footer-links__link">About Us</a>
+                                    <a href="/about" class="footer-links__link">About Us</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'delivery_info' %}" class="footer-links__link">Delivery Information</a>
+                                    <a href="/delivery_info" class="footer-links__link">Delivery Information</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'privacy_policy' %}" class="footer-links__link">Privacy Policy</a>
+                                    <a href="/privacy_policy" class="footer-links__link">Privacy Policy</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'brands' %}" class="footer-links__link">Brands</a>
+                                    <a href="/brands" class="footer-links__link">Brands</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'contact_us' %}" class="footer-links__link">Contact Us</a>
+                                    <a href="/contact_us" class="footer-links__link">Contact Us</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'returns' %}" class="footer-links__link">Returns</a>
+                                    <a href="/returns" class="footer-links__link">Returns</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'sitemap' %}" class="footer-links__link">Site Map</a>
+                                    <a href="/sitemap" class="footer-links__link">Site Map</a>
                                 </li>
                             </ul>
                         </div>
@@ -78,25 +78,25 @@
                             <h5 class="footer-links__title">My Account</h5>
                             <ul class="footer-links__list">
                                 <li class="footer-links__item">
-                                    <a href="{% url 'store_location' %}" class="footer-links__link">Store Location</a>
+                                    <a href="/store_location" class="footer-links__link">Store Location</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'order_history' %}" class="footer-links__link">Order History</a>
+                                    <a href="/order_history" class="footer-links__link">Order History</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'wish_list' %}" class="footer-links__link">Wish List</a>
+                                    <a href="/wish_list" class="footer-links__link">Wish List</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'newsletter' %}" class="footer-links__link">Newsletter</a>
+                                    <a href="/newsletter" class="footer-links__link">Newsletter</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'specials' %}" class="footer-links__link">Specials</a>
+                                    <a href="/specials" class="footer-links__link">Specials</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'gift_certificates' %}" class="footer-links__link">Gift Certificates</a>
+                                    <a href="/gift_certificates" class="footer-links__link">Gift Certificates</a>
                                 </li>
                                 <li class="footer-links__item">
-                                    <a href="{% url 'affiliate' %}" class="footer-links__link">Affiliate</a>
+                                    <a href="/affiliate" class="footer-links__link">Affiliate</a>
                                 </li>
                             </ul>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="footer-newsletter__text">
                                 Subscribe to our newsletter to stay updated with the latest offers and promotions.
                             </div>
-                            <form action="{% url 'subscribe' %}" method="post" class="footer-newsletter__form">
+                            <form action="/subscribe" method="post" class="footer-newsletter__form">
                                 {% csrf_token %}
                                 <label class="sr-only" for="footer-newsletter-address">Email Address</label>
                                 <input type="email"
@@ -135,7 +135,7 @@
                                         <a href="https://www.instagram.com/tuuziane/" target="_blank"><i class="fab fa-instagram"></i></a>
                                     </li>
                                     <li class="social-links__item social-links__item--rss">
-                                        <a href="{% url 'rss_feed' %}" target="_blank"><i class="fas fa-rss"></i></a>
+                                        <a href="/rss_feed" target="_blank"><i class="fas fa-rss"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -148,7 +148,7 @@
             <div class="container">
                 <div class="site-footer__bottom-row">
                     <div class="site-footer__copyright">
-                        <!-- copyright --> © 2023 Tuuziane. All rights reserved. Designed by <a href="https://ubuviz.com/user/kos9" target="_blank">Kos</a><!-- copyright / end -->
+                        <!-- copyright --> © 2025 Tuuziane. All rights reserved. Designed by <a href="https://ubuviz.com/" target="_blank">Kos</a><!-- copyright / end -->
                     </div>
                     <div class="site-footer__payments">
                         <img src="{% static 'images/payments.png' %}" alt="">
