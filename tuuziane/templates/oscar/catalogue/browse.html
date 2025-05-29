@@ -1,8 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
-{% load basket_tags %}
-{% load category_tags %}
-{% load product_tags %}
+{% load basket_tags category_tags product_tags static %}
 
 {% block breadcrumb %}
     <!-- breadcrumb start -->
@@ -31,6 +28,7 @@
     </div>
     <!-- breadcrumb end -->
 {% endblock breadcrumb %}
+
 {% block layout %}
 
     <div class="block-split block-split--has-sidebar">
