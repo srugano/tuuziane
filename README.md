@@ -68,7 +68,21 @@ and check required (and optional) variables to put
 
 ## Running the Development Servers
 
-To enable a modern frontend workflow with Vue 3 and Django, this project uses [django-vite](https://dkane.net/2024/getting-vuejs-3-to-work-nicely-with-django/) to integrate Vite and Vue into the Django app. In development, you need to run both the Django backend and the Vite frontend servers:
+You can quickly start the development servers using the provided scripts in the project root:
+
+1. **Start the Django backend server:**
+
+    ./start_backend_dev
+
+2. **Start the Vite frontend server:**
+
+    ./start_frontend_dev
+
+These scripts will launch the Django backend and the Vite frontend servers with the recommended settings for development.
+
+---
+
+Alternatively, you can start the servers manually:
 
 1. **Start the Django development server** (using uv):
 
@@ -77,7 +91,7 @@ To enable a modern frontend workflow with Vue 3 and Django, this project uses [d
 2. **Start the Vite development server** (from the `vue-tuuziane/` directory):
 
     cd vue-tuuziane
-    npm run dev
+    npx webpack --mode=development --watch
 
 - The Vite server will serve your Vue assets with hot module reloading at `http://localhost:5173/`.
 - Django will continue to serve your backend at `http://localhost:8000/`.
