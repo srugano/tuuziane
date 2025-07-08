@@ -1,4 +1,5 @@
 {% load static wagtailcore_tags %}
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -89,5 +90,7 @@
         <script src="{% static 'vendor/select2/js/select2.min.js' %}"></script>
         <script src="{% static 'js/number.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
+
+        {% render_bundle 'home' %}
     </body>
 </html>

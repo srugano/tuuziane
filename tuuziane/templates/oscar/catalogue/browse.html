@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load basket_tags category_tags product_tags static %}
+{% load render_bundle from webpack_loader %}
 
 {% block breadcrumb %}
     <!-- breadcrumb start -->
@@ -40,6 +41,10 @@
                 <div class="block-split__item block-split__item-content col-auto">
                     <div class="block">
                         <div class="products-view">
+                            <!-- Vue mount for catalogue page -->
+                            <div id="vue-catalogue"></div>
+                            {% render_bundle 'catalogue' %}
+                            {% comment %}
                             <!-- product view options start -->
                             {% include "oscar/catalogue/product.html" %}
                             <!-- product view options end -->
@@ -109,8 +114,10 @@
                                 </ul>
                             </nav>
                             <div class="products-view__pagination-legend">Showing 6 of 98 products</div>
+                            {% endcomment %}
                         </div>
                         <!-- pagination end -->
+                        </div>
                     </div>
                 </div>
             </div>
