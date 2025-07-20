@@ -9,4 +9,4 @@
 <script setup>
 import Filters from './Filters.vue'
 import ProductList from './ProductList.vue'
-</script> 
+</script>

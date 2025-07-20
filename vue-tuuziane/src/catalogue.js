@@ -4,4 +4,4 @@ import CatalogueApp from './components/Catalogue/CatalogueApp.vue';
 
 const app = createApp(CatalogueApp);
 app.use(createPinia());
-app.mount('#vue-catalogue'); 
+app.mount('#vue-catalogue');

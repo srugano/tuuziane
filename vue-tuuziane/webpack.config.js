@@ -39,4 +39,4 @@ module.exports = {
       vue$: 'vue/dist/vue.esm-bundler.js'
     }
   }
-}; 
+};
