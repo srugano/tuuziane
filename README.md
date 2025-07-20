@@ -65,3 +65,36 @@ and check required (and optional) variables to put
 >   - If the username is ADMIN_EMAIL you will be superuser
 >   - If username starts with `admin` will be created a superuser
 >   - If username starts with `user`  will be created a standard user (no staff, no admin)
+
+## Running the Development Servers
+
+You can quickly start the development servers using the provided scripts in the project root:
+
+1. **Start the Django backend server:**
+
+    ./start_backend_dev
+
+2. **Start the Vite frontend server:**
+
+    ./start_frontend_dev
+
+These scripts will launch the Django backend and the Vite frontend servers with the recommended settings for development.
+
+---
+
+Alternatively, you can start the servers manually:
+
+1. **Start the Django development server** (using uv):
+
+    uv run python manage.py runserver
+
+2. **Start the Vite development server** (from the `vue-tuuziane/` directory):
+
+    cd vue-tuuziane
+    npx webpack --mode=development --watch
+
+- The Vite server will serve your Vue assets with hot module reloading at `http://localhost:5173/`.
+- Django will continue to serve your backend at `http://localhost:8000/`.
+- The integration is handled via django-vite template tags, so your Vue components will be loaded automatically in your Django templates.
+
+For more details, see the [django-vite + Vue + Django integration guide](https://dkane.net/2024/getting-vuejs-3-to-work-nicely-with-django/).

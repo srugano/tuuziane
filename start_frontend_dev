@@ -1,0 +1,3 @@
+#!/bin/sh
+cd vue-tuuziane
+npx webpack --mode=development --watch

@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     "oscar.apps.dashboard.vouchers.apps.VouchersDashboardConfig",
     "oscar.apps.dashboard.communications.apps.CommunicationsDashboardConfig",
     "oscar.apps.dashboard.shipping.apps.ShippingDashboardConfig",
+    "webpack_loader",
     "widget_tweaks",
     "treebeard",
     "sorl.thumbnail",
@@ -186,6 +187,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
+    os.path.join(BASE_DIR, "vue-tuuziane", "dist"),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -295,3 +297,15 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 }
 
 APPEND_SLASH = True
+
+
+WEBPACK_LOADER = {
+    "DEFAULT": {
+        "CACHE": not DEBUG,
+        "BUNDLE_DIR_NAME": "bundles/",
+        "STATS_FILE": os.path.join(BASE_DIR, "vue-tuuziane", "dist", "webpack-stats.json"),
+        "POLL_INTERVAL": 0.1,
+        "TIMEOUT": None,
+        "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+    }
+}
