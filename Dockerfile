@@ -27,6 +27,7 @@ RUN apt-get update --yes --quiet && \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g webpack \
+    && npm install -g webpack-cli \
     && rm -rf /var/lib/apt/lists/*
 
 # Install the application server.
@@ -53,12 +54,14 @@ RUN mkdir -p /app/.npm/_logs /app/.npm/_cacache && \
 
 # Set npm config to use app-relative paths
 USER wagtail
-RUN npm config set cache /app/.npm/_cacache --global && \
-    npm config set update-notifier false --global
+# RUN npm config set cache /app/.npm/_cacache --global && \
+#     npm config set update-notifier false --global
 
 # Build frontend
 WORKDIR /app/vue-tuuziane
-RUN npm install && npm install -D webpack-cli && npm run build
+RUN npm install
+RUN npm install vue-loader
+RUN npm run build
 WORKDIR /app
 
 # Collect static files.
