@@ -54,13 +54,12 @@ RUN mkdir -p /app/.npm/_logs /app/.npm/_cacache && \
 
 # Set npm config to use app-relative paths
 USER wagtail
-# RUN npm config set cache /app/.npm/_cacache --global && \
-#     npm config set update-notifier false --global
+RUN npm config set cache /app/.npm/_cacache --global && \
+    npm config set update-notifier false --global
 
 # Build frontend
 WORKDIR /app/vue-tuuziane
-RUN npm install
-RUN npm install vue-loader
+RUN npm install && npm install vue-loader
 RUN npm run build
 WORKDIR /app
 
