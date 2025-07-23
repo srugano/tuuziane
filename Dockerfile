@@ -47,8 +47,14 @@ RUN chown wagtail:wagtail /app
 # Copy the source code of the project into the container.
 COPY --chown=wagtail:wagtail . .
 
-# Use user "wagtail" to run the build commands below and the server itself.
+# Create npm cache directories and set permissions
+RUN mkdir -p /app/.npm/_logs /app/.npm/_cacache && \
+    chown -R wagtail:wagtail /app/.npm
+
+# Set npm config to use app-relative paths
 USER wagtail
+RUN npm config set cache /app/.npm/_cacache --global && \
+    npm config set update-notifier false --global
 
 # Build frontend
 WORKDIR /app/vue-tuuziane
