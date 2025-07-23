@@ -1,5 +1,6 @@
 # Use an official Python runtime based on Debian 10 "buster" as a parent image.
 FROM python:3.12-slim-bookworm
+FROM node:12.18.1
 
 # Add user that will be used in the container.
 RUN useradd wagtail
@@ -18,18 +19,20 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
     build-essential \
     libpq-dev \
-    libmariadbclient-dev \
     libjpeg62-turbo-dev \
     zlib1g-dev \
     libwebp-dev \
+    curl \
  && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 
 # Install the application server.
 RUN pip install "gunicorn==20.0.4"
 
 # Install the project requirements.
-COPY requirements.txt /
-RUN pip install -r /requirements.txt
+# COPY requirements.txt /
+# RUN pip install -r /requirements.txt
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
@@ -44,6 +47,11 @@ COPY --chown=wagtail:wagtail . .
 
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
+
+# Build frontend
+RUN cd vue-tuuziane
+RUN npm run build 
+RUN cd ..
 
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
