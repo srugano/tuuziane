@@ -51,7 +51,7 @@ USER wagtail
 
 # Build frontend
 WORKDIR /app/vue-tuuziane
-RUN npm install && npm run build
+RUN npm install && npm i webpack && npm run build
 WORKDIR /app
 
 # Collect static files.
