@@ -1,6 +1,5 @@
-# Use an official Python runtime based on Debian 10 "buster" as a parent image.
+# Use a Python runtime as base image
 FROM python:3.12-slim-bookworm
-FROM node:12.18.1
 
 # Add user that will be used in the container.
 RUN useradd wagtail
@@ -15,17 +14,19 @@ EXPOSE 8000
 ENV PYTHONUNBUFFERED=1 \
     PORT=8000
 
-# Install system packages required by Wagtail and Django.
-RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    libjpeg62-turbo-dev \
-    zlib1g-dev \
-    libwebp-dev \
-    curl \
- && rm -rf /var/lib/apt/lists/*
-
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+# Install system packages and Node.js
+RUN apt-get update --yes --quiet && \
+    apt-get install --yes --quiet --no-install-recommends \
+        build-essential \
+        libpq-dev \
+        libjpeg62-turbo-dev \
+        zlib1g-dev \
+        libwebp-dev \
+        curl \
+        gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install the application server.
 RUN pip install "gunicorn==20.0.4"
@@ -49,9 +50,9 @@ COPY --chown=wagtail:wagtail . .
 USER wagtail
 
 # Build frontend
-RUN cd vue-tuuziane
-RUN npm run build 
-RUN cd ..
+WORKDIR /app/vue-tuuziane
+RUN npm install && npm run build
+WORKDIR /app
 
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
