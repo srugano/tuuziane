@@ -62,6 +62,10 @@ jobs:
               git pull origin main
               uv sync --active
               python manage.py migrate
+              cd /var/www/prod/tuuziane/vue-tuuziane
+              npm install
+              npm run build
+              cd /var/www/prod/tuuziane
               python manage.py collectstatic --noinput
               export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
               sudo systemctl restart tuuziane.service
