@@ -61,7 +61,7 @@ USER wagtail
 
 # Build frontend
 WORKDIR /app/vue-tuuziane
-RUN npm install && npm install -D webpack-cli vue-loader
+RUN npm install && npm install -D webpack-cli vue-loader style-loader css-loader
 RUN npm run build
 WORKDIR /app
 
