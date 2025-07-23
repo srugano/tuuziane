@@ -26,6 +26,7 @@ RUN apt-get update --yes --quiet && \
         gnupg \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
+    && npm install -g webpack \
     && rm -rf /var/lib/apt/lists/*
 
 # Install the application server.
@@ -51,7 +52,7 @@ USER wagtail
 
 # Build frontend
 WORKDIR /app/vue-tuuziane
-RUN npm install && npm i webpack && npm run build
+RUN npm install --prefix ./ && npm run build
 WORKDIR /app
 
 # Collect static files.
