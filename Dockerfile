@@ -35,10 +35,11 @@ RUN apt-get update --yes --quiet && \
 
 # Install the application server using UV
 RUN uv pip install "gunicorn==20.0.4"
+RUN uv pip freeze > /requirements.txt
 
 # Install the project requirements using UV
 # COPY requirements.txt /
-# RUN uv pip install -r /requirements.txt
+RUN python -m pip install -r /requirements.txt
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app

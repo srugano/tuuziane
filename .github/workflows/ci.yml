@@ -65,7 +65,7 @@ jobs:
               cd /var/www/prod/tuuziane/vue-tuuziane
               npm install
               npm run build
-              cd ..
+              cd /var/www/prod/tuuziane
               python manage.py collectstatic --noinput
               export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
               sudo systemctl restart tuuziane.service
