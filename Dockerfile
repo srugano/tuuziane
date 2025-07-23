@@ -28,14 +28,17 @@ RUN apt-get update --yes --quiet && \
     && apt-get install -y nodejs \
     && npm install -g webpack \
     && npm install -g webpack-cli \
+    && python -m pip install pipx \
+    && python -m pipx ensurepath \
+    && python -m pipx install uv \
     && rm -rf /var/lib/apt/lists/*
 
-# Install the application server.
-RUN pip install "gunicorn==20.0.4"
+# Install the application server using UV
+RUN uv pip install "gunicorn==20.0.4"
 
-# Install the project requirements.
+# Install the project requirements using UV
 # COPY requirements.txt /
-# RUN pip install -r /requirements.txt
+# RUN uv pip install -r /requirements.txt
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
