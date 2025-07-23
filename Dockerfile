@@ -1,5 +1,5 @@
-# Use an official Python runtime based on Debian 10 "buster" as a parent image.
-FROM python:3.8.1-slim-buster
+# Use a Python runtime as base image
+FROM python:3.12-slim-bookworm
 
 # Add user that will be used in the container.
 RUN useradd wagtail
@@ -14,22 +14,32 @@ EXPOSE 8000
 ENV PYTHONUNBUFFERED=1 \
     PORT=8000
 
-# Install system packages required by Wagtail and Django.
-RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    libmariadbclient-dev \
-    libjpeg62-turbo-dev \
-    zlib1g-dev \
-    libwebp-dev \
- && rm -rf /var/lib/apt/lists/*
+# Install system packages and Node.js
+RUN apt-get update --yes --quiet && \
+    apt-get install --yes --quiet --no-install-recommends \
+        build-essential \
+        libpq-dev \
+        libjpeg62-turbo-dev \
+        zlib1g-dev \
+        libwebp-dev \
+        curl \
+        gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g webpack \
+    && npm install -g webpack-cli \
+    && python -m pip install pipx \
+    && python -m pipx ensurepath \
+    && python -m pipx install uv \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install the application server.
-RUN pip install "gunicorn==20.0.4"
+# Install the application server using UV
+RUN uv pip install "gunicorn==20.0.4"
+RUN uv pip freeze > /requirements.txt
 
-# Install the project requirements.
-COPY requirements.txt /
-RUN pip install -r /requirements.txt
+# Install the project requirements using UV
+# COPY requirements.txt /
+RUN python -m pip install -r /requirements.txt
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
@@ -42,8 +52,22 @@ RUN chown wagtail:wagtail /app
 # Copy the source code of the project into the container.
 COPY --chown=wagtail:wagtail . .
 
-# Use user "wagtail" to run the build commands below and the server itself.
+# Set npm config to use app-relative paths as root first
+RUN npm config set cache /app/.npm/_cacache --global && \
+    npm config set update-notifier false --global
+
+# Create npm cache directories and set permissions
+RUN mkdir -p /app/.npm/_logs /app/.npm/_cacache && \
+    chown -R wagtail:wagtail /app/.npm
+
+# Switch to wagtail user
 USER wagtail
+
+# Build frontend
+WORKDIR /app/vue-tuuziane
+RUN npm install && npm install -D webpack-cli vue-loader style-loader css-loader
+RUN npm run build
+WORKDIR /app
 
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear

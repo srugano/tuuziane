@@ -59,7 +59,7 @@ def remove_duplicate_attributes(apps, schema_editor):
         You could fix this by renaming the duplicate codes or by matching all types to one
         type and update the attribute values accordingly for their new type. After that you can
         re-run the migration."""
-        assert used_attributes.values("type").distinct().count() == 1, ASSERTION_MESSAGE
+        assert used_attributes.values("type").distinct().count() == 1, ASSERTION_MESSAGE  # nosec
 
         # Choose one attribute that will be used to move to and others to be deleted.
         to_be_used_attribute = used_attributes.first()
