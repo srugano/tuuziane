@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     "treebeard",
     "sorl.thumbnail",
     "django_tables2",
+    "django_user_agents",
     "homepage",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
