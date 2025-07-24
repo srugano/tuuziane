@@ -31,6 +31,7 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 # Application definition
 
 INSTALLED_APPS = [
+    "rest_framework",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
