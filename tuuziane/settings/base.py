@@ -31,6 +31,7 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 # Application definition
 
 INSTALLED_APPS = [
+    "rest_framework",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -88,6 +89,7 @@ INSTALLED_APPS = [
     "treebeard",
     "sorl.thumbnail",
     "django_tables2",
+    "django_user_agents",
     "homepage",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
