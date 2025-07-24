@@ -1,19 +1,32 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import Filters from './Filters.vue'
+import Paginagion from '../general/Pagination.vue'
 
 const products = ref([])
 const loading = ref(true)
+const pagination = ref(null)
+const filters = ref(null)
+
 
 onMounted(async () => {
   loading.value = true
-  const res = await fetch('/api/catalogue/products/')
+  const res = await fetch('/api/v1/products/')
   const data = await res.json()
-  products.value = data.products
+  if(data.status == 'success') {
+    console.log("List", data)
+    products.value = data.data.objects
+    pagination.value = data.data.pagination
+    filters.value = data.data.filters
+  }
   loading.value = false
 })
 </script>
 
 <template>
+  <Filters :pagination="pagination" />
+
+  <!-- product list start -->
   <div class="products-view__list products-list products-list--grid--4" data-layout="list" data-with-features="false">
     <div class="products-list__head">
       <div class="products-list__column products-list__column--image">Image</div>
@@ -52,4 +65,7 @@ onMounted(async () => {
       </template>
     </div>
   </div>
+  <!-- product list end -->
+
+  <Paginagion :pagination="pagination" />
 </template>
