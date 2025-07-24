@@ -4,11 +4,18 @@ import { ref, onMounted } from 'vue'
 const products = ref([])
 const loading = ref(true)
 
+const props = defineProps({
+  apiUrl: {
+    type: String,
+    required: true
+  }
+})
+
 onMounted(async () => {
   loading.value = true
-  const res = await fetch('/api/catalogue/products/')
+  const res = await fetch(props.apiUrl)
   const data = await res.json()
-  products.value = data.products
+  products.value = data.results
   loading.value = false
 })
 </script>
