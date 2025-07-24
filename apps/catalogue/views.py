@@ -1,4 +1,4 @@
-from rest_framework import viewsets, serializers
+from rest_framework import viewsets, serializers, response
 from oscar.apps.catalogue.models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -20,4 +20,4 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())[:20]
         serializer = self.get_serializer(queryset, many=True)
-        return Response({"products": serializer.data})
+        return response.Response({"products": serializer.data})
