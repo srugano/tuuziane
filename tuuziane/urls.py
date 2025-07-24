@@ -14,7 +14,7 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),  # Wagtail document downloads
     path(r"health/", include("health_check.urls")),  # Health check (good practice!)
     path("", include(apps.get_app_config("oscar").urls[0])),
-    path("api/catalogue/products/", catalogue_views.api_products, name="api_products"),
+    path("api/v1/", include('apps.catalogue.urls')),
     # Wagtail's catch-all *last*
     path("", include(wagtail_urls)),
 ]

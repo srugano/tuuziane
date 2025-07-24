@@ -1,15 +1,23 @@
-from django.http import JsonResponse
+from rest_framework import viewsets, serializers
 from oscar.apps.catalogue.models import Product
 
+class ProductSerializer(serializers.ModelSerializer):
+    price = serializers.SerializerMethodField()
 
-def api_products(request):
-    products = Product.objects.filter(is_public=True).order_by("-date_created")[:20]
-    data = [
-        {
-            "id": p.id,
-            "title": p.title,
-            "price": str(p.stockrecords.first().price_excl_tax) if p.stockrecords.exists() else None,
-        }
-        for p in products
-    ]
-    return JsonResponse({"products": data})
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'price']
+
+    def get_price(self, obj):
+        if obj.stockrecords.exists():
+            return str(obj.stockrecords.first().price_excl_tax)
+        return None
+
+class ProductViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.filter(is_public=True).order_by("-date_created")
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())[:20]
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({"products": serializer.data})
