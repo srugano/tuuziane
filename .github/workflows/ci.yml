@@ -25,21 +25,14 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
 
-      - name: Pre-commit checks
-        uses: pre-commit/action@v3.0.0
-        with:
-          exclude: migrations
-
       - name: Install/Update uv
         uses: astral-sh/setup-uv@v3
 
-      - name: Synchronize dependencies with uv
-        run: uv sync
+      - name: Install Tox
+        run: uv pip install tox tox-gh-actions
 
-      - name: Activate Virtual Environment and Run Tests
-        run: |
-          source .venv/bin/activate
-          .venv/bin/pytest tests/
+      - name: Run Tox
+        run: tox
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
