@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "django_tables2",
     "django_user_agents",
+    "storages",
     "homepage",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
@@ -204,12 +205,8 @@ STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
-    # ManifestStaticFilesStorage is recommended in production, to prevent
-    # outdated JavaScript / CSS assets being served from cache
-    # (e.g. after a Wagtail upgrade).
-    # See https://docs.djangoproject.com/en/4.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
