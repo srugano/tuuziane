@@ -29,7 +29,7 @@ jobs:
         uses: astral-sh/setup-uv@v3
 
       - name: Install Tox
-        run: uv pip install tox tox-gh-actions
+        run: uv pip install --system tox tox-gh-actions
 
       - name: Run Tox
         run: tox
