@@ -28,6 +28,11 @@ jobs:
       - name: Install/Update uv
         uses: astral-sh/setup-uv@v3
 
+      - name: Install OS dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgdal-dev
+
       - name: Install Tox
         run: uv pip install --system tox tox-gh-actions
 
