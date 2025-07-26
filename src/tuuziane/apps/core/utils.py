@@ -1,5 +1,4 @@
 from django_user_agents.utils import get_user_agent  # type: ignore
-from ipware import get_client_ip as ipware_get_client_ip  # type: ignore
 
 
 def parse_user_agent(request):
@@ -17,17 +16,8 @@ def parse_user_agent(request):
 
 
 def get_client_ip(request):
-    client_ip, is_routable = ipware_get_client_ip(request)
-    if client_ip is None:
-        return None
-
-    # We got the client's IP address
-    if is_routable:
-        # The client's IP address is publicly routable on the Internet
-        return client_ip
-
-    # The client's IP address is private
-    return None
+    """Gets the client IP from the request object set by IpWareMiddleware."""
+    return getattr(request, "IPWARE_CLIENT_IP", None)
 
 
 def get_serializer_errors(serializer_errors):

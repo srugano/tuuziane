@@ -91,7 +91,7 @@ INSTALLED_APPS = [
     "django_tables2",
     "django_user_agents",
     "storages",
-    "homepage",
+    "tuuziane.apps.homepage",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
     "health_check.cache",

@@ -56,6 +56,13 @@ jobs:
           DATABASE_URL: "postgis://test_user:test_password@localhost:5433/test_db"
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
+      - name: Count tests
+        id: count_tests
+        run: |
+          count=$(tox -e unit -- --collect-only -q | grep "collected" | awk '{print $1}')
+          echo "Total tests: $count"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
       - name: Deploy to DigitalOcean (Main Branch Only)
         if: github.ref == 'refs/heads/main'
         uses: appleboy/ssh-action@master
