@@ -12,22 +12,23 @@ AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
 MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-        "OPTIONS": {
-            "location": "media",
-            "file_overwrite": False,
+STORAGES.update(
+    {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+            "OPTIONS": {
+                "location": "media",
+                "file_overwrite": False,
+            },
         },
-    },
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3ManifestStaticStorage",
-        "OPTIONS": {
-            "location": "static",
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3boto3.S3ManifestStaticStorage",
+            "OPTIONS": {
+                "location": "static",
+            },
         },
-    },
-}
-
+    }
+)
 
 try:
     from .local import *  # noqa: F403
