@@ -1,12 +1,10 @@
 <template>
   <div>
-    <h2>Catalogue (Vue)</h2>
-    <Filters />
+    <!-- <h2>Catalogue</h2> -->
     <ProductList />
   </div>
 </template>
 
 <script setup>
-import Filters from './Filters.vue'
 import ProductList from './ProductList.vue'
 </script>

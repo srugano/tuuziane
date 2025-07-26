@@ -25,7 +25,9 @@ dependencies = [
   "pysolr",
   "wagtail",
   "django-vite",
-  "django-webpack-loader"
+  "django-webpack-loader",
+  "django-user-agents>=0.4.0",
+  "django-ipware>=7.0.1",
 ]
 
 urls.Documentation = "https://unicef.github.io/hope-country-report"
@@ -35,9 +37,11 @@ urls.Source = "https://github.com/srugano/tuuziane"
 [project.optional-dependencies]
 dev = [
   "pre-commit",
-  "pytest-xdist",
   "pytest",
+  "pytest-coverage",
   "pytest-django",
+  "pytest-echo",
+  "pytest-xdist",
   "ruff",
   "hatch",
   "hatch-fancy-pypi-readme",
@@ -47,9 +51,6 @@ dev = [
   "djangorestframework-stubs",
   "faker",
   "freezegun",
-  "pytest-cov",
-  "pytest-rerunfailures",
-  "pytest-randomly",
   "tox",
   "tox-uv",
   "types-freezegun",
@@ -142,5 +143,5 @@ fragments = [
     { path = "README.md" }
 ]
 
-[tool.uv]
+[uv]
 package = true
