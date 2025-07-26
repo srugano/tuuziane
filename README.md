@@ -23,9 +23,10 @@ ABOUT TUUZIANE
 
 ### 1. Clone repo and install requirements
     git clone https://github.com/srugano/tuuziane
-    uv create 3.12
-    uv install
-    uv activate in-project
+    cd tuuziane
+    uv venv -p 3.12
+    source .venv/bin/activate
+    uv pip install -e .[dev]
     pre-commit install
 
 ### 2. configure your environment
