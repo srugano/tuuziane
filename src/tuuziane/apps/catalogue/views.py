@@ -1,8 +1,8 @@
-from django.http import JsonResponse
+from django.http import HttpRequest, JsonResponse
 from oscar.apps.catalogue.models import Product
 
 
-def api_products(request):
+def api_products(request: HttpRequest) -> JsonResponse:
     products = Product.objects.filter(is_public=True).order_by("-date_created")[:20]
     data = [
         {

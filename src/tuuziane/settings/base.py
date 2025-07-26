@@ -2,7 +2,7 @@ import os
 
 import dj_database_url
 import environ
-from oscar.defaults import *
+from oscar.defaults import *  # noqa: F403
 
 env = environ.Env(
     DEBUG=(bool, False),
@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "oscar.apps.checkout.apps.CheckoutConfig",
     "oscar.apps.address.apps.AddressConfig",
     "oscar.apps.shipping.apps.ShippingConfig",
-    "apps.catalogue.apps.CatalogueConfig",
+    "tuuziane.apps.catalogue.apps.CatalogueConfig",
     "oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig",
     "oscar.apps.communication.apps.CommunicationConfig",
     "oscar.apps.partner.apps.PartnerConfig",

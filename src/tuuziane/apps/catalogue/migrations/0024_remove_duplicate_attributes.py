@@ -48,7 +48,7 @@ def remove_duplicate_attributes(apps, schema_editor):
         if used_attribute_count == 1:
             attributes.exclude(pk=used_attributes.first().pk).delete()
             continue
-        elif used_attribute_count == 0:
+        if used_attribute_count == 0:
             attributes.exclude(pk=attributes.last().pk).delete()
             continue
 

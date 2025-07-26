@@ -18,4 +18,4 @@ categories = [
 for breadcrumbs in categories:
     create_from_breadcrumbs(breadcrumbs)
 
-print("categories succesfuly  added")
+print("categories succesfuly  added")  # noqa: T201

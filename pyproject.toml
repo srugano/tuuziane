@@ -1,59 +1,90 @@
 [project]
 name = "tuuziane"
-version = "0.1.0"
-description = "Add your description here"
+description = "Marketplace for peoples"
 readme = "README.md"
-requires-python = ">=3.12"
+authors = [
+  { name = "stockman", email = "allan.rugano@ubuviz.com" },
+]
+
+requires-python = ">=3.13"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
 ]
+version = "0.1.0"
 dependencies = [
-  "dj-database-url>=2.3",
-  "django>=4.2,<5.1",
-  "django-environ>=0.12",
-  "django-health-check>=3.18.3",
-  "django-oscar[sorl-thumbnail]>=3.2.5",
-  "gunicorn>=23",
-  "psutil>=6.1.1",
-  "psycopg2-binary>=2.9.10",
-  "pycountry>=24.6.1",
-  "pysolr>=3.10",
-  "wagtail>=6.3,<6.4",
-  "django-vite>=3.1.0",
-  "django-webpack-loader>=3.0.0"
+  "dj-database-url",
+  "django",
+  "django-environ",
+  "django-health-check",
+  "django-oscar[sorl-thumbnail]",
+  "gunicorn",
+  "psutil",
+  "psycopg2-binary",
+  "pycountry",
+  "pysolr",
+  "wagtail",
+  "django-vite",
+  "django-webpack-loader"
 ]
+
+urls.Documentation = "https://unicef.github.io/hope-country-report"
+urls.Issues = "https://github.com/srugano/tuuziane/issues"
+urls.Source = "https://github.com/srugano/tuuziane"
 
 [project.optional-dependencies]
 dev = [
-  "pre-commit>=4.1",
-  "pytest>=8.3.4",
-  "pytest-django>=4.10",
+  "pre-commit",
+  "pytest-xdist",
+  "pytest",
+  "pytest-django",
   "ruff",
   "hatch",
   "hatch-fancy-pypi-readme",
-  "mypy==0.982",
-  "django-stubs~=1.12.0",
-  "django-stubs-ext<1.0.0,>=0.7.0",
-  "djangorestframework-stubs~=1.7.0",
-  "faker<18,>=17",
+  "mypy",
+  "django-stubs",
+  "django-stubs-ext",
+  "djangorestframework-stubs",
+  "faker",
   "freezegun",
-  "pytest-cov<5.0.0,>=4.1.0",
-  "pytest-rerunfailures<14.0,>=13.0",
-  "pytest-randomly<4.0.0,>=3.15.0",
-  "tox>=4.2",
-  "tox-uv>=1.20.2",
+  "pytest-cov",
+  "pytest-rerunfailures",
+  "pytest-randomly",
+  "tox",
+  "tox-uv",
+  "types-freezegun",
+  "types-python-dateutil",
+  "types-pytz",
+  "types-redis",
+  "types-requests",
+  "types-setuptools",
+]
+
+docs = [
+    "mkdocs",
+]
+
+mypy = [
+  "djangorestframework-stubs",
+  "lxml-stubs",
+  "mypy",
+  "types-defusedxml",
+  "types-gevent",
+  "types-html5lib",
+  "types-jmespath",
+  "types-markdown",
+  "types-psycopg2",
+  "types-pygments",
+  "types-python-dateutil",
+  "types-pytz",
+  "types-requests",
 ]
 
 [tool.ruff]
-# Assume Python 3.12
-target-version = "py312"
-
-# Same as Black.
+target-version = "py313"
 line-length = 120
 indent-width = 4
 
-# Exclude a variety of commonly ignored directories.
 exclude = [
   ".bzr",
   ".direnv",
@@ -81,38 +112,22 @@ exclude = [
   "node_modules",
   "site-packages",
   "venv",
+  "migrations"
 ]
 
-# Like Black, indent with spaces, rather than tabs.
 format.indent-style = "space"
-# Like Black, use double quotes for strings.
 format.quote-style = "double"
-# Like Black, automatically detect the appropriate line ending.
 format.line-ending = "auto"
-# Like Black, respect magic trailing commas.
 format.skip-magic-trailing-comma = false
-# Set the line length limit used when formatting code snippets in
-# docstrings.
-#
-# This only has an effect when the `docstring-code-format` setting is
-# enabled.
 format.docstring-code-line-length = "dynamic"
-# Enable auto-formatting of code examples in docstrings. Markdown,
-# reStructuredText code/literal blocks and doctests are all supported.
-#
-# This is currently disabled by default, but it is planned for this
-# to be opt-out in the future.
 format.docstring-code-format = false
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
 lint.select = ["E", "W", "F"]
 lint.ignore = [ "F403" ]
-# Allow fix for all enabled rules (when `--fix`) is provided.
 lint.fixable = [ "ALL" ]
 lint.unfixable = [  ]
-# Allow unused variables when underscore-prefixed.
 lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "tuuziane.settings.dev"
@@ -128,4 +143,4 @@ fragments = [
 ]
 
 [tool.uv]
-package = false
+package = true

@@ -12,7 +12,7 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.13']
 
     steps:
       - uses: actions/checkout@v3
@@ -50,6 +50,7 @@ jobs:
               echo "Deploying to tuuziane.com with Path"
               export PATH="$HOME/.local/bin:$PATH"
               cd /var/www/prod/tuuziane
+              git rev-parse HEAD > .PREVIOUS_COMMIT
               source /var/www/envs/tuuziane/bin/activate
               which uv
               git pull origin main
@@ -73,3 +74,38 @@ jobs:
           else
             echo "Health check passed!"
           fi
+      - name: Rollback deployment on failure
+        if: failure() && github.ref == 'refs/heads/main'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DIGITALOCEAN_IP }}
+          username: ${{ secrets.DIGITALOCEAN_USERNAME }}
+          password: ${{ secrets.DIGITALOCEAN_PASSWORD }}
+          port: ${{ secrets.DIGITALOCEAN_PORT }}
+          script: |
+            set -e
+            echo "Deployment or health check failed. Rolling back..."
+            cd /var/www/prod/tuuziane
+            if [ -f .PREVIOUS_COMMIT ]; then
+              PREVIOUS_COMMIT=$(cat .PREVIOUS_COMMIT)
+              echo "Reverting to previous commit: $PREVIOUS_COMMIT"
+              git reset --hard "$PREVIOUS_COMMIT"
+
+              echo "Re-running deployment for previous version..."
+              source /var/www/envs/tuuziane/bin/activate
+              uv sync --active
+              # We skip running migrations on rollback, as downgrading migrations can be
+              # a complex and potentially destructive process. This rollback strategy
+              # assumes that new migrations are backward-compatible.
+              cd /var/www/prod/tuuziane/vue-tuuziane
+              npm install
+              npm run build
+              cd /var/www/prod/tuuziane
+              python manage.py collectstatic --noinput
+              export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
+              sudo systemctl restart tuuziane.service
+              echo "Rollback successful."
+            else
+              echo "No previous commit file found. Cannot roll back."
+              exit 1
+            fi

@@ -24,4 +24,4 @@ AttributeOption.objects.create(group=color, option="White")
 
 # optional feedback message
 
-print("AttributeOptionGroup & AttributeOption Added")
+print("AttributeOptionGroup & AttributeOption Added")  # noqa: T201
