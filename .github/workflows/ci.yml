@@ -13,21 +13,6 @@ jobs:
       max-parallel: 2
       matrix:
         python-version: ['3.13']
-    services:
-      postgres:
-        image: postgis/postgis:16-3.4
-        env:
-          POSTGRES_DB: test_db
-          POSTGRES_USER: test_user
-          POSTGRES_PASSWORD: test_password
-        ports:
-          - 5433:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -45,7 +30,7 @@ jobs:
       - name: Install OS dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgdal-dev
+          sudo apt-get install -y libgdal-dev libsqlite3-mod-spatialite
 
       - name: Install Tox
         run: uv pip install --system tox tox-gh-actions
@@ -53,7 +38,6 @@ jobs:
       - name: Run Tox
         run: tox
         env:
-          DATABASE_URL: "postgis://test_user:test_password@localhost:5433/test_db"
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
       - name: Count tests
