@@ -13,7 +13,7 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),  # Wagtail document downloads
     path(r"health/", include("health_check.urls")),  # Health check (good practice!)
     path("", include(apps.get_app_config("oscar").urls[0])),
-    path("api/v1/", include("apps.catalogue.urls")),
+    # path("api/v1/", include("apps.catalogue.urls")),
     path("api/v1/osc/", include("oscarapi.urls")),
     # Wagtail's catch-all *last*
     path("", include(wagtail_urls)),

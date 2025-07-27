@@ -314,5 +314,5 @@ WEBPACK_LOADER = {
 }
 
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "apps.core.pagination.StandardPagination",
+    "DEFAULT_PAGINATION_CLASS": "src.tuuziane.apps.core.pagination.StandardPagination",
 }
