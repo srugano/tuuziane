@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     home: './src/home.js',
     catalogue: './src/catalogue.js',
+    registration: './src/registration.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist/bundles/'),

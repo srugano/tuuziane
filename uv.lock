@@ -254,6 +254,21 @@ sorl-thumbnail = [
 ]
 
 [[package]]
+name = "django-oscar-api"
+version = "3.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "django-oscar" },
+    { name = "djangorestframework" },
+    { name = "setuptools" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/cc/94/8af7c9c92a85563baef3cbaf77dec055fd18783539b8c71f646a92a453ee/django-oscar-api-3.3.0.tar.gz", hash = "sha256:b5d6c77def1ddd517c2b52ae4eb6d04ea766283779c0a8ff9e519f1a6c656474", size = 45843, upload-time = "2024-09-20T15:45:52.392Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/27/22/1effe9e15198762f6b9ba80ce54aca589011b9d62fae1c50356c06ccc4df/django_oscar_api-3.3.0-py3-none-any.whl", hash = "sha256:4a92d7d984dd83ad17a4cc3e8d49c42fc85e85fbdb390a9f123f96f67334bf2e", size = 62641, upload-time = "2024-09-20T15:45:50.222Z" },
+]
+
+[[package]]
 name = "django-permissionedforms"
 version = "0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -861,6 +876,7 @@ dependencies = [
     { name = "django-health-check" },
     { name = "django-ipware" },
     { name = "django-oscar", extra = ["sorl-thumbnail"] },
+    { name = "django-oscar-api" },
     { name = "django-user-agents" },
     { name = "django-vite" },
     { name = "django-webpack-loader" },
@@ -886,6 +902,7 @@ requires-dist = [
     { name = "django-health-check", specifier = ">=3.18.3" },
     { name = "django-ipware", specifier = ">=7.0.1" },
     { name = "django-oscar", extras = ["sorl-thumbnail"], specifier = ">=3.2.5" },
+    { name = "django-oscar-api", specifier = ">=3.3.0" },
     { name = "django-user-agents", specifier = ">=0.4.0" },
     { name = "django-vite", specifier = ">=3.1.0" },
     { name = "django-webpack-loader", specifier = ">=3.0.0" },

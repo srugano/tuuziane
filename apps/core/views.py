@@ -4,7 +4,6 @@ from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.pagination import PageNumberPagination
 from apps.core.utils import get_serializer_errors, get_client_ip, parse_user_agent
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -16,37 +15,7 @@ from rest_framework.mixins import (
     DestroyModelMixin,
 )
 from django.utils.translation import gettext_lazy as _
-
-
-class StandardPagination(PageNumberPagination):
-    """Standard pagination class with custom response format"""
-
-    page_size = 50
-    page_size_query_param = "page_size"
-    max_page_size = 500
-
-    def get_paginated_response(self, data, message=None, filters=None):
-        """Return paginated response with custom format"""
-        return Response(
-            {
-                "status": "success",
-                "message": message if message else _("Data retrieved successfully"),
-                "data": {
-                    "objects": data,
-                    "pagination": {
-                        "total_items": self.page.paginator.count,
-                        "total_pages": self.page.paginator.num_pages,
-                        "current_page": self.page.number,
-                        "per_page": self.get_page_size(self.request),
-                        "has_next": self.page.has_next(),
-                        "has_previous": self.page.has_previous(),
-                        "next_page_number": self.page.next_page_number() if self.page.has_next() else None,
-                        "previous_page_number": self.page.previous_page_number() if self.page.has_previous() else None,
-                    },
-                    "filters": filters or {},
-                },
-            }
-        )
+from apps.core.pagination import StandardPagination
 
 
 class BaseViewMixin(APIView):

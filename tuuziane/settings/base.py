@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "django_tables2",
     "django_user_agents",
+    "oscarapi",
     "homepage",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
@@ -102,7 +103,9 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
-    "django.contrib.sessions.middleware.SessionMiddleware",
+    "oscarapi.middleware.ApiGatewayMiddleWare",
+    # "django.contrib.sessions.middleware.SessionMiddleware",
+    "oscarapi.middleware.HeaderSessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -110,7 +113,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "oscar.apps.basket.middleware.BasketMiddleware",
+    "oscarapi.middleware.ApiBasketMiddleWare",
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 ]
 
@@ -297,6 +300,8 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     ),
     "Cancelled": (),
 }
+OSCARAPI_PRODUCT_FIELDS = ["url", "id", "upc", "title", "price", "stockrecords", "images"]
+OSCARAPI_ENABLE_REGISTRATION = True
 
 APPEND_SLASH = True
 
@@ -310,4 +315,8 @@ WEBPACK_LOADER = {
         "TIMEOUT": None,
         "IGNORE": [r".+\.hot-update.js", r".+\.map"],
     }
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "apps.core.pagination.StandardPagination",
 }
