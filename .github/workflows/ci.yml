@@ -67,7 +67,7 @@ jobs:
               git pull origin main
               uv sync --active
               python manage.py migrate
-              cd /var/www/prod/tuuziane/vue-tuuziane
+              cd /var/www/prod/tuuziane/src/frontend
               npm install
               npm run build
               cd /var/www/prod/tuuziane

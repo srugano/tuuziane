@@ -8,3 +8,7 @@ DATABASES = {
         "NAME": ":memory:",
     }
 }
+
+# Oscar API
+# ruff : noqa : F405
+MIDDLEWARE.remove("oscarapi.middleware.ApiGatewayMiddleWare")

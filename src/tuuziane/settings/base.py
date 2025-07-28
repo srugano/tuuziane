@@ -91,7 +91,7 @@ INSTALLED_APPS = [
     "django_tables2",
     "django_user_agents",
     "oscarapi",
-    "homepage",
+    "tuuziane.apps.homepage",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
     "health_check.cache",
@@ -192,7 +192,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
-    os.path.join(BASE_DIR, "vue-tuuziane", "dist"),
+    os.path.join(BASE_DIR, "src", "frontend", "dist"),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -306,7 +306,7 @@ WEBPACK_LOADER = {
     "DEFAULT": {
         "CACHE": not DEBUG,
         "BUNDLE_DIR_NAME": "bundles/",
-        "STATS_FILE": os.path.join(BASE_DIR, "vue-tuuziane", "dist", "webpack-stats.json"),
+        "STATS_FILE": os.path.join(BASE_DIR, "src", "frontend", "dist", "webpack-stats.json"),
         "POLL_INTERVAL": 0.1,
         "TIMEOUT": None,
         "IGNORE": [r".+\.hot-update.js", r".+\.map"],
@@ -314,5 +314,5 @@ WEBPACK_LOADER = {
 }
 
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "src.tuuziane.apps.core.pagination.StandardPagination",
+    "DEFAULT_PAGINATION_CLASS": "tuuziane.apps.core.pagination.StandardPagination",
 }
