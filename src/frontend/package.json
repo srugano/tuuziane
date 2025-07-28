@@ -17,6 +17,9 @@
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2",
     "webpack-bundle-tracker": "^3.2.1",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^6.0.1",
+    "vue-loader": "^17.4.2",
+    "style-loader": "^4.0.0",
+    "css-loader": "^7.1.2"
   }
 }
