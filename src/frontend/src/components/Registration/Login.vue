@@ -12,7 +12,7 @@
                                                           placeholder="Password"> <a href=""
                                             class="account-menu__form-forgot-link">Forgot?</a></div>
         </div>
-        <p v-if="error" class="error">{{ error }}</p>
+        <p v-if="error" class="error text-danger">{{ error }}</p>
         <div class="form-group account-menu__form-button"><button type="submit"
                                                                   class="btn btn-primary btn-sm">Login</button></div>
     </form>

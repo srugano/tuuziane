@@ -3,7 +3,7 @@
     <Login v-if="showLogin" @login-success="handleAuthSuccess" />
     <Register v-else @register-success="handleAuthSuccess" />
 
-    <div class="account-menu__form-link mb-4 mt-0 pt-0" ><a @click="showLogin = !showLogin">
+    <div class="account-menu__form-link mb-4 mt-0 pt-0" ><a @click="showLogin = !showLogin" role="button">
         {{ showLogin ? 'Create An Account' : 'Login to your account' }}
     </a></div>
   </div>
