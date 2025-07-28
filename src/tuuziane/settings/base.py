@@ -90,7 +90,7 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "django_tables2",
     "django_user_agents",
-    "storages",
+    "oscarapi",
     "tuuziane.apps.homepage",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
@@ -103,7 +103,9 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
-    "django.contrib.sessions.middleware.SessionMiddleware",
+    "oscarapi.middleware.ApiGatewayMiddleWare",
+    # "django.contrib.sessions.middleware.SessionMiddleware",
+    "oscarapi.middleware.HeaderSessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -111,7 +113,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "oscar.apps.basket.middleware.BasketMiddleware",
+    "oscarapi.middleware.ApiBasketMiddleWare",
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 ]
 
@@ -190,7 +192,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
-    os.path.join(BASE_DIR, "vue-tuuziane", "dist"),
+    os.path.join(BASE_DIR, "src", "frontend", "dist"),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -294,6 +296,8 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     ),
     "Cancelled": (),
 }
+OSCARAPI_PRODUCT_FIELDS = ["url", "id", "upc", "title", "price", "stockrecords", "images"]
+OSCARAPI_ENABLE_REGISTRATION = True
 
 APPEND_SLASH = True
 
@@ -302,9 +306,13 @@ WEBPACK_LOADER = {
     "DEFAULT": {
         "CACHE": not DEBUG,
         "BUNDLE_DIR_NAME": "bundles/",
-        "STATS_FILE": os.path.join(BASE_DIR, "vue-tuuziane", "dist", "webpack-stats.json"),
+        "STATS_FILE": os.path.join(BASE_DIR, "src", "frontend", "dist", "webpack-stats.json"),
         "POLL_INTERVAL": 0.1,
         "TIMEOUT": None,
         "IGNORE": [r".+\.hot-update.js", r".+\.map"],
     }
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "tuuziane.apps.core.pagination.StandardPagination",
 }

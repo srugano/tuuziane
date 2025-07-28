@@ -2,7 +2,7 @@ from rest_framework import serializers
 from oscar.apps.catalogue.models import Product
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductTuuzianeSerializer(serializers.ModelSerializer):
     price = serializers.SerializerMethodField()
 
     class Meta:

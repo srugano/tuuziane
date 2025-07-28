@@ -9,5 +9,5 @@ def test_product_list_view(api_client):
     Test that the product list view is accessible.
     """
     url = reverse("product-list")
-    response = api_client.get(url)
+    response = api_client.get(url, headers={"Authorization": "VueTuuzianeApp"})
     assert response.status_code == status.HTTP_200_OK

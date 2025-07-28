@@ -28,7 +28,12 @@ dependencies = [
   "django-webpack-loader",
   "django-user-agents>=0.4.0",
   "django-ipware>=7.0.1",
+  "ua-parser",
+  "user-agents",
+  "django-user-agents>=0.4.0",
+  "django-oscar-api>=3.3.0",
   "django-storages>=1.14.6",
+  "pre-commit"
 ]
 
 urls.Documentation = "https://unicef.github.io/hope-country-report"

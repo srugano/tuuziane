@@ -1,7 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import Filters from './Filters.vue'
-import Paginagion from '../general/Pagination.vue'
+import ProductPrice from './ProductPrice.vue'
+import Filters from '../General/Filters.vue'
+import Paginagion from '../General/Pagination.vue'
 
 const products = ref([])
 const loading = ref(true)
@@ -11,7 +12,10 @@ const filters = ref(null)
 
 onMounted(async () => {
   loading.value = true
-  const res = await fetch('/api/v1/products/')
+  const res = await fetch('/api/v1/osc/products/', {
+    method: "GET",
+    headers: {'Authorization': 'VueTuuzianeApp'}
+  })
   const data = await res.json()
   if(data.status == 'success') {
     console.log("List", data)
@@ -55,7 +59,8 @@ onMounted(async () => {
             <div class="product-card__footer">
               <div class="product-card__prices">
                 <div class="product-card__price product-card__price--current">
-                  {{ product.price ? '$' + product.price : 'N/A' }}
+                  <ProductPrice :url="product.price" />
+                  <!-- {{ product.price ? '$' + product.price : 'N/A' }} -->
                 </div>
               </div>
               <!-- Add to cart, wishlist, compare buttons as needed -->

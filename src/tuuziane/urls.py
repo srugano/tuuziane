@@ -12,8 +12,9 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),  # Wagtail admin
     path("documents/", include(wagtaildocs_urls)),  # Wagtail document downloads
     path(r"health/", include("health_check.urls")),  # Health check (good practice!)
-    path("", include(apps.get_app_config("oscar").urls[0])),  # type: ignore
-    path("api/v1/", include("tuuziane.apps.catalogue.urls")),
+    path("", include(apps.get_app_config("oscar").urls[0])),  # type: ignore [attr-defined]
+    # path("api/v1/", include("apps.catalogue.urls")),
+    path("api/v1/osc/", include("oscarapi.urls")),
     # Wagtail's catch-all *last*
     path("", include(wagtail_urls)),
 ]

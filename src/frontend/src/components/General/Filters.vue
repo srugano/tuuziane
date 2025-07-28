@@ -113,7 +113,7 @@ const itemsOnCurrentPage = computed(() => {
           <div class="view-options__select">
               <label for="view-option-limit">Show:</label>
               <select id="view-option-limit" class="form-control form-control-sm" name="">
-                  <option value="">16</option>
+                  <option :value="pagination?.per_page">{{ pagination?.per_page }}</option>
               </select>
           </div>
       </div>
