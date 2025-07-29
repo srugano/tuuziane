@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "django_tables2",
     "django_user_agents",
+    "django_extensions",
     "oscarapi",
     "tuuziane.apps.homepage",
     "health_check",  # required
