@@ -61,8 +61,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="dropcart__actions"><a href="cart.html" class="btn btn-secondary">View
-                    Cart</a> <a href="checkout.html" class="btn btn-primary">Checkout</a></div>
+                <div class="dropcart__actions"><a disabled class="btn btn-secondary">View
+                    Cart</a> <a disabled class="btn btn-primary">Checkout</a></div>
             </div>
         </div>
     </div>
