@@ -5,8 +5,8 @@ import { createPinia } from 'pinia'
 import Home from "./modules/Home.vue";
 
 console.log("Mounting Vue app to #dj-vite-home");
-const app = createApp(Home)
+const homeApp = createApp(Home)
 
-app.use(createPinia())
+homeApp.use(createPinia())
 
-app.mount('#dj-vite-home')
+homeApp.mount('#dj-vite-home')

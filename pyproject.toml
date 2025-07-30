@@ -11,7 +11,7 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.13",
 ]
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
   "dj-database-url",
   "django",
@@ -33,7 +33,8 @@ dependencies = [
   "django-user-agents>=0.4.0",
   "django-oscar-api>=3.3.0",
   "django-storages[s3]",
-  "pre-commit"
+  "pre-commit",
+  "django-extensions"
 ]
 
 urls.Documentation = "https://unicef.github.io/hope-country-report"

@@ -1,5 +1,5 @@
-{% load category_tags static %}
-<div class="block-split__item block-split__item-sidebar col-auto">
+<template>
+    <div class="block-split__item block-split__item-sidebar col-auto">
     <div class="sidebar sidebar--offcanvas--mobile">
         <div class="sidebar__backdrop"></div>
         <div class="sidebar__body">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="widget-filters__item">
+                        <div class="widget-filters__item">
                             <div class="filter filter--opened" data-collapse-item>
                                 <button type="button" class="filter__title" data-collapse-trigger>
                                     Vehicle <span class="filter__arrow">
@@ -114,11 +114,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
-
-
-
-                                <!-- <div class="widget-filters__item">
+                                </div>
+                                <div class="widget-filters__item">
                                     <div class="filter filter--opened" data-collapse-item>
                                         <button type="button" class="filter__title" data-collapse-trigger>
                                             Price <span class="filter__arrow">
@@ -145,11 +142,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
-
-
-
-                            <!-- <div class="widget-filters__item">
+                            </div>
+                            <div class="widget-filters__item">
                                 <div class="filter filter--opened" data-collapse-item>
                                     <button type="button" class="filter__title" data-collapse-trigger>
                                         Brand <span class="filter__arrow">
@@ -252,11 +246,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-
-
-
-                        <!-- <div class="widget-filters__item">
+                        </div>
+                        <div class="widget-filters__item">
                             <div class="filter filter--opened" data-collapse-item>
                                 <button type="button" class="filter__title" data-collapse-trigger>
                                     Brand <span class="filter__arrow">
@@ -333,12 +324,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> -->
-
-
-
-
-                                        <!-- <div class="widget-filters__item">
+                                            </div>
+                                            <div class="widget-filters__item">
                                                 <div class="filter filter--opened" data-collapse-item>
                                                     <button type="button" class="filter__title" data-collapse-trigger>
                                                         Rating <span class="filter__arrow">
@@ -491,12 +478,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> -->
-
-
-
-
-                                        <!-- <div class="widget-filters__item">
+                                        </div>
+                                        <div class="widget-filters__item">
                                             <div class="filter filter--opened" data-collapse-item>
                                                 <button type="button" class="filter__title" data-collapse-trigger>
                                                     Color <span class="filter__arrow">
@@ -778,9 +761,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> -->
-
-
+                                    </div>
                                 </div>
                                 <div class="widget-filters__actions d-flex">
                                     <button class="btn btn-primary btn-sm">Filter</button>
@@ -791,7 +772,7 @@
                                 <div class="widget__header">
                                     <h4>Latest Products</h4>
                                 </div>
-                                <!-- <div class="widget-products__list">
+                                <div class="widget-products__list">
                                     <div class="widget-products__item">
                                         <div class="widget-products__image image image--type--product">
                                             <a href="product-full.html" class="image__body">
@@ -809,9 +790,80 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image image image--type--product">
+                                            <a href="product-full.html" class="image__body">
+                                                <img class="image__tag"
+                                                     src="{% static 'images/products/product-2-64x64.jpg' %}"
+                                                     alt="">
+                                            </a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name">
+                                                <a href="product-full.html">Brandix Brake Kit BDX-750Z370-S</a>
+                                            </div>
+                                            <div class="widget-products__prices">
+                                                <div class="widget-products__price widget-products__price--current">$224.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image image image--type--product">
+                                            <a href="product-full.html" class="image__body">
+                                                <img class="image__tag"
+                                                     src="{% static 'images/products/product-3-64x64.jpg' %}"
+                                                     alt="">
+                                            </a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name">
+                                                <a href="product-full.html">Left Headlight Of Brandix Z54</a>
+                                            </div>
+                                            <div class="widget-products__prices">
+                                                <div class="widget-products__price widget-products__price--new">$349.00</div>
+                                                <div class="widget-products__price widget-products__price--old">$415.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image image image--type--product">
+                                            <a href="product-full.html" class="image__body">
+                                                <img class="image__tag"
+                                                     src="{% static 'images/products/product-4-64x64.jpg' %}"
+                                                     alt="">
+                                            </a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name">
+                                                <a href="product-full.html">Glossy Gray 19" Aluminium Wheel AR-19</a>
+                                            </div>
+                                            <div class="widget-products__prices">
+                                                <div class="widget-products__price widget-products__price--current">$589.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image image image--type--product">
+                                            <a href="product-full.html" class="image__body">
+                                                <img class="image__tag"
+                                                     src="{% static 'images/products/product-5-64x64.jpg' %}"
+                                                     alt="">
+                                            </a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name">
+                                                <a href="product-full.html">Twin Exhaust Pipe From Brandix Z54</a>
+                                            </div>
+                                            <div class="widget-products__prices">
+                                                <div class="widget-products__price widget-products__price--current">$749.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+</template>
