@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/bundles/'),
     filename: '[name]-[contenthash].js',
-    publicPath: '/static/bundles/',
+    publicPath: '/ivyodufise-a7b3c/bundles/',
     clean: true,
   },
   plugins: [
