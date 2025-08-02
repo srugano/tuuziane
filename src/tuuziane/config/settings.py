@@ -12,7 +12,24 @@ FRONTEND_HOST = env("DOMAIN")
 ADMIN_PANEL_URL = env("ADMIN_PANEL_URL")
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
+# Paths and directories
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
+
+# Core Django settings
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env("DEBUG")
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+DOMAIN_NAME = env("DOMAIN")
+WWW_ROOT = f"http://{DOMAIN_NAME}/"
+FRONTEND_HOST = env("DOMAIN")
+ADMIN_PANEL_URL = env("ADMIN_PANEL_URL")
+SITE_ID = 1
+ROOT_URLCONF = "tuuziane.urls"
+WSGI_APPLICATION = "tuuziane.wsgi.application"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+APPEND_SLASH = True
 INSTALLED_APPS = [
     "rest_framework",
     "wagtail.contrib.forms",
@@ -146,10 +163,6 @@ WSGI_APPLICATION = "tuuziane.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# Database
-
 DATABASES = {"default": dj_database_url.config(default=env("DATABASE_URL"))}
 
 # Password validation
@@ -197,21 +210,36 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "/static/"
+STATIC_URL = f"/{env('STATIC_PATH_NAME')}/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+if env("STORAGE_TYPE") != "s3":
+    MEDIA_URL = f"/{env('MEDIA_PATH_NAME')}/"
 
-# Default storage settings, with the staticfiles storage updated.
-# See https://docs.djangoproject.com/en/4.2/ref/settings/#std-setting-STORAGES
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}
+# Storage configuration
+if env("STORAGE_TYPE") == "s3":
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+            "OPTIONS": {
+                "location": env("MEDIA_PATH_NAME"),
+                "file_overwrite": False,
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+        },
+    }
+    MEDIA_URL = f"https://{env('AWS_S3_CUSTOM_DOMAIN')}/"
+else:
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
 
 
 # Wagtail settings

@@ -1,23 +1,31 @@
 from smart_env import SmartEnv
 
 DEFAULTS = {
+    # Core settings
     "ALLOWED_HOSTS": (list, ["localhost", "127.0.0.1"]),
     "ADMIN_PANEL_URL": (str, "rabangaha"),
-    "AWS_ACCESS_KEY_ID": (str, "somekeys"),
-    "AWS_S3_CUSTOM_DOMAIN": (str, "localhost"),
-    "AWS_S3_ENDPOINT_URL": (str, "some values"),
-    "AWS_SECRET_ACCESS_KEY": (str, "some values"),
-    "AWS_STORAGE_BUCKET_NAME": (str, "some values"),
     "DATABASE_URL": (str, "sqlite:///db.sqlite3"),
     "DEBUG": (bool, False),
-    "DEFAULT_FROM_EMAIL": (str, "webmaster@localhost"),
     "DOMAIN": (str, "http://localhost:8000"),
+    "SECRET_KEY": (str, "your-default-secret-key"),
+    "WAGTAILADMIN_BASE_URL": (str, "http://localhost"),
+    # Email settings
+    "DEFAULT_FROM_EMAIL": (str, "webmaster@localhost"),
     "EMAIL_HOST": (str, ""),
     "EMAIL_HOST_USER": (str, ""),
     "EMAIL_HOST_PASSWORD": (str, ""),
     "EMAIL_PORT": (str, ""),
     "EMAIL_USE_TLS": (bool, True),
-    "SECRET_KEY": (str, "your-default-secret-key"),
+    # Storage settings
+    "STORAGE_TYPE": (str, "local"),  # local or s3
+    "AWS_ACCESS_KEY_ID": (str, ""),
+    "AWS_S3_CUSTOM_DOMAIN": (str, ""),
+    "AWS_S3_ENDPOINT_URL": (str, ""),
+    "AWS_SECRET_ACCESS_KEY": (str, ""),
+    "AWS_STORAGE_BUCKET_NAME": (str, ""),
+    "STATIC_PATH_NAME": (str, "static"),
+    "MEDIA_PATH_NAME": (str, "media"),
+    # Social auth
     "SOCIALACCOUNT_PROVIDERS": (
         dict,
         {
@@ -25,7 +33,8 @@ DEFAULTS = {
             "facebook": {"APP": {"client_id": "", "secret": "", "key": ""}},
         },
     ),
-    "WAGTAILADMIN_BASE_URL": (str, "http://localhost"),
+    # Performance
+    "THUMBNAIL_FORCE_OVERWRITE": (bool, False),
 }
 
 env = SmartEnv(**DEFAULTS)
