@@ -1327,10 +1327,10 @@
                         </a>
                         <div class="account-menu__divider"></div>
                         <ul class="account-menu__links">
-                            <li><a href="{% url 'account_profile' %}">Profile</a></li>
+                            <li><a href="{% url 'customer:profile-view' %}">Profile</a></li>
                             <li><a href="{% url 'account_email' %}">Email Settings</a></li>
                             <li><a href="{% url 'account_change_password' %}">Change Password</a></li>
-                            <li><a href="{% url 'account_order_history' %}">Order History</a></li>
+                            <li><a href="{% url 'customer:order-list' %}">Order History</a></li>
                         </ul>
                         <div class="account-menu__divider"></div>
                         <form method="post" action="{% url 'account_logout' %}">

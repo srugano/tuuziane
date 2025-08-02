@@ -5,7 +5,7 @@ from django.urls import include, path
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
-from tuuziane.core.views import AboutView, ContactView, ProfileView
+from tuuziane.core.views import AboutView, ContactView
 
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
@@ -16,12 +16,10 @@ urlpatterns = [
     path(r"health/", include("health_check.urls")),  # Health check (good practice!)
     path("about/", AboutView.as_view(), name="about"),
     path("contact/", ContactView.as_view(), name="contact"),
-    path("profile/", ProfileView.as_view(), name="profile"),
-    path("shop/", include(apps.get_app_config("oscar").urls[0])),  # type: ignore [attr-defined]
     # path("api/v1/", include("apps.catalogue.urls")),
     path("api/v1/osc/", include("oscarapi.urls")),
-    # Wagtail's catch-all *last*
-    path("", include(wagtail_urls)),
+    path("raba/", include(wagtail_urls)),
+    path("", include(apps.get_app_config("oscar").urls[0])),  # type: ignore [attr-defined]
 ]
 
 if settings.DEBUG:

@@ -31,7 +31,6 @@ WSGI_APPLICATION = "tuuziane.wsgi.application"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 APPEND_SLASH = True
 INSTALLED_APPS = [
-    "tuuziane.core",
     "rest_framework",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -109,6 +108,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "oscarapi",
     "tuuziane.apps.homepage",
+    "tuuziane.core",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
     "health_check.cache",
