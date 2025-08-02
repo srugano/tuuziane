@@ -140,7 +140,7 @@ lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "tuuziane.settings.dev"
+DJANGO_SETTINGS_MODULE = "tuuziane.config.settings"
 
 [build-system]
 requires = ["hatchling", "hatch-fancy-pypi-readme"]

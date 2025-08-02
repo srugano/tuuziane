@@ -81,7 +81,7 @@ jobs:
               npm run build
               cd /var/www/prod/tuuziane
               python manage.py collectstatic --noinput
-              export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
+              export DJANGO_SETTINGS_MODULE=tuuziane.config.settings
               sudo systemctl restart tuuziane.service
               echo "Deployment to tuuziane.com successful!"
       - name: Check application health
@@ -122,7 +122,7 @@ jobs:
               npm run build
               cd /var/www/prod/tuuziane
               python manage.py collectstatic --noinput
-              export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
+              export DJANGO_SETTINGS_MODULE=tuuziane.config.settings
               sudo systemctl restart tuuziane.service
               echo "Rollback successful."
             else

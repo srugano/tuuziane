@@ -7,8 +7,8 @@
         <div class="header__topbar-start">
             <div class="topbar topbar--spaceship-start">
                 <div class="topbar__item-text d-none d-xxl-flex">Call Us: +257 68 123 456 </div>
-                <div class="topbar__item-text"><a class="topbar__link" title="Coming soon">About Us</a></div>
-                <div class="topbar__item-text"><a class="topbar__link" title="Coming soon">Contacts</a>
+                <div class="topbar__item-text"><a href="{% url 'about' %}" class="topbar__link">About Us</a></div>
+                <div class="topbar__item-text"><a href="{% url 'contact' %}" class="topbar__link">Contacts</a>
                 </div>
                 <!-- <div class="topbar__item-text"><a class="topbar__link" href="track-order.html">Track Order</a> -->
                 <!-- </div> -->
@@ -993,7 +993,7 @@
                             </div>
                         </li>
                         <li class="main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu">
-                            <a href="account-login.html" class="main-menu__link">Account <svg width="7px"
+                            <a href="{% url 'account_login' %}" class="main-menu__link">Account <svg width="7px"
                                                                                               height="5px">
                                 <path
                                     d="M0.280,0.282 C0.645,-0.084 1.238,-0.077 1.596,0.297 L3.504,2.310 L5.413,0.297 C5.770,-0.077 6.363,-0.084 6.728,0.282 C7.080,0.634 7.088,1.203 6.746,1.565 L3.504,5.007 L0.262,1.565 C-0.080,1.203 -0.072,0.634 0.280,0.282 Z" />
@@ -1304,31 +1304,17 @@
                 <div class="indicator__content">
                     <div class="account-menu">
                         {% if not user.is_authenticated %}
-                            <!-- If not authenticated -->
-                            <div id="vue-registration"></div>
-                            {% render_bundle 'registration' %}
+                            <div class="account-menu__form">
+                                <div class="account-menu__form-title">Log In to Your Account</div>
+                                <div class="account-menu__form-link">
+                                    <a href="{% url 'account_login' %}" class="btn btn-primary btn-sm">Sign In</a>
+                                </div>
+                                <div class="account-menu__form-link">
+                                    <a href="{% url 'account_signup' %}">Create An Account</a>
+                                </div>
+                            </div>
                             <div class="account-menu__divider"></div>
                         {% endif %}
-
-                        {% comment %}
-                        <form class="account-menu__form">
-                            <div class="account-menu__form-title">Log In to Your Account</div>
-                            <div class="form-group"><label for="header-signin-email" class="sr-only">Email
-                                address</label> <input id="header-signin-email" type="email"
-                                                       class="form-control form-control-sm" placeholder="Email address"></div>
-                            <div class="form-group"><label for="header-signin-password"
-                                                           class="sr-only">Password</label>
-                                <div class="account-menu__form-forgot"><input id="header-signin-password"
-                                                                              type="password" class="form-control form-control-sm"
-                                                                              placeholder="Password"> <a href=""
-                                                               class="account-menu__form-forgot-link">Forgot?</a></div>
-                            </div>
-                            <div class="form-group account-menu__form-button"><button type="submit"
-                                                                                      class="btn btn-primary btn-sm">Login</button></div>
-                            <div class="account-menu__form-link"><a href="account-login.html">Create An
-                                Account</a></div>
-                        </form>
-                        {% endcomment %}
 
                         {% if user.is_authenticated %}
                         <a href="" class="account-menu__user">
@@ -1341,22 +1327,18 @@
                         </a>
                         <div class="account-menu__divider"></div>
                         <ul class="account-menu__links">
-                            <li><a href="account-dashboard.html">Dashboard</a></li>
-                            <li><a href="account-dashboard.html">Garage</a></li>
-                            <li><a href="account-profile.html">Edit Profile</a></li>
-                            <li><a href="account-orders.html">Order History</a></li>
-                            <li><a href="account-addresses.html">Addresses</a></li>
+                            <li><a href="{% url 'account_profile' %}">Profile</a></li>
+                            <li><a href="{% url 'account_email' %}">Email Settings</a></li>
+                            <li><a href="{% url 'account_change_password' %}">Change Password</a></li>
+                            <li><a href="{% url 'account_order_history' %}">Order History</a></li>
                         </ul>
                         <div class="account-menu__divider"></div>
-                        {# <!-- <form action="{% url 'accounts:logout' %}"> --> #}
-                        <form action="/accounts/logout/">
+                        <form method="post" action="{% url 'account_logout' %}">
+                            {% csrf_token %}
                             <ul class="account-menu__links">
                                 <li class="text-center"><button class="btn btn-primary mx-auto" type="submit">Logout</button></li>
                             </ul>
                         </form>
-                        <!-- <ul class="account-menu__links">
-                            <li><a href="account-login.html">Logout</a></li>
-                        </ul> -->
                         {% endif %}
                     </div>
                 </div>

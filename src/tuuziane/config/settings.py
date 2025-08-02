@@ -31,6 +31,7 @@ WSGI_APPLICATION = "tuuziane.wsgi.application"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 APPEND_SLASH = True
 INSTALLED_APPS = [
+    "tuuziane.core",
     "rest_framework",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
