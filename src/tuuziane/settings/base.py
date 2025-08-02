@@ -1,35 +1,18 @@
 import os
-
-import dj_database_url
-import environ
 from oscar.defaults import *  # noqa: F403
+from tuuziane.config.env import env
+import dj_database_url
 
-env = environ.Env(
-    DEBUG=(bool, False),
-    SECRET_KEY=(str, "your-default-secret-key"),
-    ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
-    DATABASE_URL=(str, "sqlite:///db.sqlite3"),
-    WAGTAILADMIN_BASE_URL=(str, "http://localhost"),
-)
-
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Set the project base directory
-BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
-
-# Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
-
 DEBUG = env("DEBUG")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-
-# Application definition
-
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+DOMAIN_NAME = env("DOMAIN")
+WWW_ROOT = f"http://{DOMAIN_NAME}/"
+FRONTEND_HOST = env("DOMAIN")
+ADMIN_PANEL_URL = env("ADMIN_PANEL_URL")
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
 INSTALLED_APPS = [
     "rest_framework",
     "wagtail.contrib.forms",
@@ -54,6 +37,21 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.flatpages",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount.providers.apple",
+    "allauth.socialaccount.providers.auth0",
+    "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.github",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.instagram",
+    "allauth.socialaccount.providers.linkedin_oauth2",
+    "allauth.socialaccount.providers.microsoft",
+    "allauth.socialaccount.providers.paypal",
+    "allauth.socialaccount.providers.shopify",
+    "allauth.socialaccount.providers.slack",
+    "allauth.socialaccount.providers.telegram",
+    "allauth.socialaccount.providers.weibo",
     "oscar.config.Shop",
     "oscar.apps.analytics.apps.AnalyticsConfig",
     "oscar.apps.checkout.apps.CheckoutConfig",
@@ -116,6 +114,7 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "oscarapi.middleware.ApiBasketMiddleWare",
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "tuuziane.urls"
@@ -150,6 +149,7 @@ WSGI_APPLICATION = "tuuziane.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Database
+
 DATABASES = {"default": dj_database_url.config(default=env("DATABASE_URL"))}
 
 # Password validation
@@ -250,6 +250,7 @@ WAGTAILDOCS_EXTENSIONS = [
 AUTHENTICATION_BACKENDS = (
     "oscar.apps.customer.auth_backends.EmailBackend",
     "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
 OSCAR_SHOP_NAME = "Tuuziane"
@@ -317,3 +318,5 @@ WEBPACK_LOADER = {
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "tuuziane.apps.core.pagination.StandardPagination",
 }
+
+SOCIALACCOUNT_PROVIDERS = env("SOCIALACCOUNT_PROVIDERS")

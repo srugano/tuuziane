@@ -8,9 +8,10 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
-    path("django-admin/", admin.site.urls),  # Django admin
-    path("admin/", include(wagtailadmin_urls)),  # Wagtail admin
+    path(f"{settings.ADMIN_PANEL_URL}/kurabaibintu/", admin.site.urls),  # Django admin
+    path(f"{settings.ADMIN_PANEL_URL}/kwandika/", include(wagtailadmin_urls)),  # Wagtail admin
     path("documents/", include(wagtaildocs_urls)),  # Wagtail document downloads
+    path("accounts/", include("allauth.urls")),
     path(r"health/", include("health_check.urls")),  # Health check (good practice!)
     path("", include(apps.get_app_config("oscar").urls[0])),  # type: ignore [attr-defined]
     # path("api/v1/", include("apps.catalogue.urls")),

@@ -34,7 +34,9 @@ dependencies = [
   "django-oscar-api>=3.3.0",
   "django-storages[s3]",
   "pre-commit",
-  "django-extensions"
+  "django-extensions",
+  "django-allauth[socialaccount]>=65.10.0",
+  "django-smart-env>=0.1.0",
 ]
 
 urls.Documentation = "https://unicef.github.io/hope-country-report"
