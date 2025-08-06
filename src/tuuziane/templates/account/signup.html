@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Sign Up" %}{% endblock %}
+
+{% block layout %}
+<div class="block">
+    <div class="container container--max--lg">
+        <div class="row justify-content-center">
+            <div class="col-md-6 d-flex flex-column mt-4 mt-md-0">
+                <div class="card flex-grow-1 mb-0">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{% translate "Create An Account" %}</h3>
+
+                        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                            {% csrf_token %}
+
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">{{ error }}</div>
+                            {% endfor %}
+
+                            {% if form.username %}
+                                <div class="form-group">
+                                    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                                    <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" class="form-control" placeholder="{% translate 'Username' %}" {% if form.username.field.required %}required{% endif %}>
+                                    {% for error in form.username.errors %}
+                                        <div class="invalid-feedback d-block">{{ error }}</div>
+                                    {% endfor %}
+                                    {% if form.username.help_text %}
+                                    <small class="form-text text-muted">{{ form.username.help_text|safe }}</small>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                                <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="{% translate 'Email address' %}" {% if form.email.field.required %}required{% endif %}>
+                                {% for error in form.email.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                                {% if form.email.help_text %}
+                                <small class="form-text text-muted">{{ form.email.help_text|safe }}</small>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                                <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" class="form-control" placeholder="{% translate 'Password' %}" {% if form.password.field.required %}required{% endif %}>
+                                {% for error in form.password.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                                {% if form.password.help_text %}
+                                <small class="form-text text-muted">{{ form.password.help_text|safe }}</small>
+                                {% endif %}
+                            </div>
+                            {% if form.password2 %}
+                            <div class="form-group">
+                                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                                <input type="password" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}" class="form-control" placeholder="{% translate 'Password confirmation' %}" {% if form.password2.field.required %}required{% endif %}>
+                                {% for error in form.password2.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                                {% if form.password2.help_text %}
+                                <small class="form-text text-muted">{{ form.password2.help_text|safe }}</small>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary mt-4 w-100">{% translate "Sign Up" %}</button>
+                            </div>
+
+                            <div class="text-center mt-2">
+                                {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock layout %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>{{ title }}</h1>
+    <div class="mt-4">
+        {{ content|safe }}
+    </div>
+    <p class="mt-4">
+        <a href="/" class="btn btn-primary">Return to Homepage</a>
+    </p>
+</div>
+{% endblock content %}
