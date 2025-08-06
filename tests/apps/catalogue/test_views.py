@@ -11,7 +11,7 @@ def test_product_list_view(api_client):
     Test that the product list view is accessible.
     """
     url = reverse("product-list")
-    response = api_client.get(url, headers={"Authorization": "Api-Key VueTuuzianeApp"})
+    response = api_client.get(url, headers={"Authorization": "VueTuuzianeApp"})
     assert response.status_code == status.HTTP_200_OK
 
 
@@ -22,6 +22,6 @@ def test_product_detail_view(api_client):
     """
     product = create_product()
     url = reverse("product-detail", kwargs={"pk": product.pk})
-    response = api_client.get(url, headers={"Authorization": "Api-Key VueTuuzianeApp"})
+    response = api_client.get(url, headers={"Authorization": "VueTuuzianeApp"})
     assert response.status_code == status.HTTP_200_OK
     assert response.data["id"] == product.id
