@@ -47,6 +47,15 @@ jobs:
           echo "Total tests: $count"
           echo "count=$count" >> "$GITHUB_OUTPUT"
 
+      - name: Publish Unit Test Report
+        uses: dorny/test-reporter@v2
+        if: always()
+        with:
+          name: Unit Test Results
+          path: "**/test-results.xml"
+          reporter: java-junit
+          fail-on-error: false
+
       - name: Deploy to DigitalOcean (Main Branch Only)
         if: github.ref == 'refs/heads/main'
         uses: appleboy/ssh-action@master
@@ -72,7 +81,7 @@ jobs:
               npm run build
               cd /var/www/prod/tuuziane
               python manage.py collectstatic --noinput
-              export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
+              export DJANGO_SETTINGS_MODULE=tuuziane.config.settings
               sudo systemctl restart tuuziane.service
               echo "Deployment to tuuziane.com successful!"
       - name: Check application health
@@ -113,7 +122,7 @@ jobs:
               npm run build
               cd /var/www/prod/tuuziane
               python manage.py collectstatic --noinput
-              export DJANGO_SETTINGS_MODULE=tuuziane.settings.prod
+              export DJANGO_SETTINGS_MODULE=tuuziane.config.settings
               sudo systemctl restart tuuziane.service
               echo "Rollback successful."
             else
