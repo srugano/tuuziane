@@ -284,7 +284,7 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-OSCAR_SHOP_NAME = "Tuuziane"
+OSCAR_SHOP_NAME = "JENGAMARKET"
 
 HAYSTACK_CONNECTIONS = {
     "default": {

@@ -58,7 +58,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken || '',
-            'Authorization': 'VueTuuzianeApp'
+            'Authorization': 'VueJengaMarketApp'
           },
           body: JSON.stringify({
             email: this.email,

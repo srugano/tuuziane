@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+    <!-- breadcrumb start -->
+    <div class="block-header block-header--has-breadcrumb block-header--has-title">
+        <div class="container">
+            <div class="block-header__body">
+                <nav class="breadcrumb block-header__breadcrumb" aria-label="breadcrumb">
+                    <ol class="breadcrumb__list">
+                        <li class="breadcrumb__spaceship-safe-area" role="presentation"></li>
+                        <li class="breadcrumb__item breadcrumb__item--parent breadcrumb__item--first">
+                            <a href="{{ homepage_url }}" class="breadcrumb__item-link">Home</a>
+                        </li>
+                        <li class="breadcrumb__item breadcrumb__item--current breadcrumb__item--last" aria-current="page">
+                            <span class="breadcrumb__item-link">About Us</span>
+                        </li>
+                        <li class="breadcrumb__title-safe-area" role="presentation"></li>
+                    </ol>
+                </nav>
+                <h1 class="block-header__title">About Us</h1>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb end -->
+{% endblock breadcrumb %}
+
+{% block layout %}
+<div class="block">
+    <div class="container">
+        <div class="card">
+            <div class="card-body card-body--padding--2">
+                <div class="row">
+                    <div class="col-12 col-lg-6 pb-4 pb-lg-0">
+                        <p class="text-justify">
+                            Welcome to JengaMarket, your one-stop shop for a wide variety of quality items. We are dedicated to giving you the very best of products, with a focus on quality, customer service, and uniqueness.
+                        </p>
+                        <p class="text-justify">
+                            Founded in 2024, JengaMarket has come a long way from its beginnings. When we first started out, our passion for providing great products drove us to do intense research, and gave us the impetus to turn hard work and inspiration into to a booming online store. We now serve customers all over, and are thrilled to be a part of the quirky, eco-friendly, fair trade wing of the e-commerce industry.
+                        </p>
+                        <p class="text-justify">
+                            We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.
+                        </p>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <img src="https://via.placeholder.com/540x360.png?text=Our+Warehouse" alt="Our Warehouse" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-space block-space--layout--before-footer"></div>
+</div>
+{% endblock layout %}

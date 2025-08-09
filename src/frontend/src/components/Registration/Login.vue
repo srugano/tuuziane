@@ -40,7 +40,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken || '',
-            'Authorization': 'VueTuuzianeApp'
+            'Authorization': 'VueJengaMarketApp'
           },
           body: JSON.stringify({
             username: this.username,

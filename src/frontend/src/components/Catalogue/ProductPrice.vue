@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect, defineProps } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 // 1. Define Props
 const props = defineProps({
@@ -32,7 +32,7 @@ const fetchPriceData = async (urlToFetch) => {
   try {
     const res = await fetch(urlToFetch, {
       method: "GET",
-      headers: { 'Authorization': 'VueTuuzianeApp' }
+      headers: { 'Authorization': 'VueJengaMarketApp' }
     });
 
     if (!res.ok) {

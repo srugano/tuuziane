@@ -14,7 +14,7 @@ onMounted(async () => {
   loading.value = true
   const res = await fetch('/api/v1/osc/products/', {
     method: "GET",
-    headers: {'Authorization': 'VueTuuzianeApp'}
+    headers: {'Authorization': 'VueJengaMarketApp'}
   })
   const data = await res.json()
   if(data.status == 'success') {

@@ -1,55 +1,11 @@
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed } from 'vue';
+import { paginationProp, calculateItemsOnCurrentPage } from '../../utils/pagination.js';
 
-const props = defineProps({
-  pagination: {
-    type: Object,
-    // Make it not required initially, or provide a default, if it can be null/undefined for a period.
-    // If you expect it to eventually always be an object, 'required: true' is fine,
-    // but the component itself needs to handle the initial null state.
-    required: false, // Changed to false to allow initial null/undefined
-    default: null, // Provide a default null to avoid 'undefined' issues
-    validator: (value) => {
-      // Allow null or undefined if not required
-      if (value === null || value === undefined) {
-        return true;
-      }
-      // Basic validation if value is an object
-      return (
-        typeof value.total_items === 'number' &&
-        typeof value.total_pages === 'number' &&
-        typeof value.current_page === 'number' &&
-        typeof value.per_page === 'number'
-      );
-    },
-  },
-});
+const props = defineProps(paginationProp);
 
-const itemsOnCurrentPage = computed(() => {
-  // Add a guard clause here:
-  if (!props.pagination) {
-    // If pagination is null or undefined, return a sensible default or 0
-    // You might also log a warning if this state is unexpected.
-    console.warn("Pagination prop is null or undefined, cannot calculate items on page.");
-    return 0; // Or -1, or null, depending on how you want to handle this state
-  }
-
-  // Now it's safe to destructure because we've confirmed props.pagination is not null/undefined
-  const { total_items, per_page, current_page, total_pages } = props.pagination;
-
-  // Your existing logic
-  if (total_pages === 1) {
-    return total_items;
-  }
-
-  if (current_page === total_pages) {
-    const remainingItems = total_items % per_page;
-    return remainingItems === 0 ? per_page : remainingItems;
-  }
-
-  return per_page;
-});
+const itemsOnCurrentPage = computed(() => calculateItemsOnCurrentPage(props.pagination));
 </script>
 
 <template>

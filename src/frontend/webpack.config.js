@@ -5,7 +5,6 @@ const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
   mode: 'development',
   entry: {
-    home: './src/home.js',
     catalogue: './src/catalogue.js',
     registration: './src/registration.js',
     basket: './src/basket.js'
