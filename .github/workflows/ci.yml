@@ -73,6 +73,7 @@ jobs:
               git rev-parse HEAD > .PREVIOUS_COMMIT
               source /var/www/envs/tuuziane/bin/activate
               which uv
+              git reset --hard HEAD
               git pull origin main
               uv sync --active
               python manage.py migrate
@@ -117,7 +118,7 @@ jobs:
               # We skip running migrations on rollback, as downgrading migrations can be
               # a complex and potentially destructive process. This rollback strategy
               # assumes that new migrations are backward-compatible.
-              cd /var/www/prod/tuuziane/vue-tuuziane
+              cd /var/www/prod/tuuziane/src/frontend
               npm install
               npm run build
               cd /var/www/prod/tuuziane
