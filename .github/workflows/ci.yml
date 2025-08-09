@@ -67,7 +67,7 @@ jobs:
           script: |
               set -e
               whoami
-              echo "Deploying to tuuziane.com with Path"
+              echo "Deploying to jengamarket.com with Path"
               export PATH="$HOME/.local/bin:$PATH"
               cd /var/www/prod/tuuziane
               git rev-parse HEAD > .PREVIOUS_COMMIT
@@ -84,11 +84,11 @@ jobs:
               python manage.py collectstatic --noinput
               export DJANGO_SETTINGS_MODULE=tuuziane.config.settings
               sudo systemctl restart tuuziane.service
-              echo "Deployment to tuuziane.com successful!"
+              echo "Deployment to jengamarket.com successful!"
       - name: Check application health
         if: github.ref == 'refs/heads/main'
         run: |
-          response=$(curl -s -H "Accept: application/json" https://tuuziane.com/health/)
+          response=$(curl -s -H "Accept: application/json" https://jengamarket.com/health/)
           if ! echo "$response" | jq -e 'all(. == "working")'; then
             echo "Health check failed! Response: $response"
             exit 1
