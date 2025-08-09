@@ -7,6 +7,11 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from tuuziane.core.views import AboutView, ContactView
 
+
+def trigger_error(request):
+    pass
+
+
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
     path(f"{settings.ADMIN_PANEL_URL}/kurabaibintu/", admin.site.urls),  # Django admin
@@ -17,6 +22,7 @@ urlpatterns = [
     path("about/", AboutView.as_view(), name="about"),
     path("contact/", ContactView.as_view(), name="contact"),
     # path("api/v1/", include("apps.catalogue.urls")),
+    path("sentry-debug/", trigger_error),
     path("api/v1/osc/", include("oscarapi.urls")),
     path("raba/", include(wagtail_urls)),
     path("", include(apps.get_app_config("oscar").urls[0])),  # type: ignore [attr-defined]

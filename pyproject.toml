@@ -37,6 +37,7 @@ dependencies = [
   "django-extensions",
   "django-allauth[socialaccount]>=65.10.0",
   "django-smart-env>=0.1.0",
+  "sentry-sdk>=2.34.1",
 ]
 
 urls.Documentation = "https://unicef.github.io/hope-country-report"

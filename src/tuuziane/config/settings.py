@@ -2,6 +2,8 @@ import os
 from oscar.defaults import *  # noqa: F403
 from tuuziane.config.env import env
 import dj_database_url
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
@@ -348,4 +350,20 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "tuuziane.apps.core.pagination.StandardPagination",
 }
 
-SOCIALACCOUNT_PROVIDERS = env("SOCIALACCOUNT_PROVIDERS")
+
+if env("SENTRY_DSN"):
+    sentry_sdk.init(
+        dsn=env("SENTRY_DSN"),
+        environment=env("SENTRY_ENVIRONMENT"),
+        release=env("SENTRY_RELEASE") or None,
+        integrations=[
+            DjangoIntegration(),
+        ],
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=env("SENTRY_TRACES_SAMPLE_RATE"),
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may want to enable sending PII data.
+        send_default_pii=True,
+    )
