@@ -6,7 +6,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 SECRET_KEY = env("SECRET_KEY")
-DEBUG = env("DEBUG")
+DEBUG = env.bool("DEBUG", default=False)
 ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 DOMAIN_NAME = env("DOMAIN")
 WWW_ROOT = f"http://{DOMAIN_NAME}/"
@@ -20,9 +20,6 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
 
 # Core Django settings
-SECRET_KEY = env("SECRET_KEY")
-DEBUG = env("DEBUG")
-ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 DOMAIN_NAME = env("DOMAIN")
 WWW_ROOT = f"http://{DOMAIN_NAME}/"
 FRONTEND_HOST = env("DOMAIN")
@@ -308,6 +305,71 @@ LOGGING = {
         },
     },
     "loggers": {
+        "tuuziane": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+        "django": {
+            "handlers": ["console"],
+            "level": "ERROR",
+        },
+        "haystack": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+    },
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "filters": {
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            # 'filters': ['require_debug_true'],
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "console_debug": {
+            "level": "INFO",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "propagate": True,
+        },
+        "django.request": {
+            "handlers": ["console_debug"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+        "tuuziane": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
         "haystack": {
             "handlers": ["console"],
             "level": "DEBUG",
