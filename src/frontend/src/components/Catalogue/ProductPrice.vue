@@ -32,7 +32,7 @@ const fetchPriceData = async (urlToFetch) => {
   try {
     const res = await fetch(urlToFetch, {
       method: "GET",
-      headers: { 'Authorization': 'VueTuuzianeApp' }
+      headers: { 'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY }
     });
 
     if (!res.ok) {

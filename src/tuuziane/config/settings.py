@@ -6,7 +6,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 SECRET_KEY = env("SECRET_KEY")
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 DOMAIN_NAME = env("DOMAIN")
 WWW_ROOT = f"http://{DOMAIN_NAME}/"
@@ -429,3 +429,5 @@ if env("SENTRY_DSN"):
         # django.contrib.auth) you may want to enable sending PII data.
         send_default_pii=True,
     )
+
+# DEBUG = True

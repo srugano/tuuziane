@@ -13,7 +13,7 @@ DEFAULTS = {
     "ALLOWED_HOSTS": (list, ["localhost", "127.0.0.1"]),
     "ADMIN_PANEL_URL": (str, "rabangaha"),
     "DATABASE_URL": (str, "sqlite:///db.sqlite3"),
-    "DEBUG": (bool, False),
+    "DEBUG": (bool, True),
     "DOMAIN": (str, "http://localhost:8000"),
     "SECRET_KEY": (str, "your-default-secret-key"),
     "WAGTAILADMIN_BASE_URL": (str, "http://localhost"),

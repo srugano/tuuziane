@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-const API_BASE = '/api/osc/basket/'
+const API_BASE = '/api/v1/osc/basket/'
 
 export function useBasket() {
   const loading = ref(true)
@@ -27,7 +27,10 @@ export function useBasket() {
     try {
       loading.value = true
       const response = await fetch(API_BASE, {
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+          'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY,
+        }
       })
       const data = await handleResponse(response)
       basketLines.value = data.lines
@@ -47,10 +50,11 @@ export function useBasket() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRFToken': getCookie('csrftoken')
+          'X-CSRFToken': getCookie('csrftoken'),
+          'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY,
         },
         body: JSON.stringify({
-          url: `/api/osc/products/${productId}/`,
+          url: `/api/v1/osc/products/${productId}/`,
           quantity
         }),
         credentials: 'include'
@@ -68,7 +72,8 @@ export function useBasket() {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRFToken': getCookie('csrftoken')
+          'X-CSRFToken': getCookie('csrftoken'),
+          'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY
         },
         body: JSON.stringify({ quantity: line.quantity }),
         credentials: 'include'
@@ -85,7 +90,8 @@ export function useBasket() {
       const response = await fetch(`${API_BASE}${line.id}/`, {
         method: 'DELETE',
         headers: {
-          'X-CSRFToken': getCookie('csrftoken')
+          'X-CSRFToken': getCookie('csrftoken'),
+          'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY
         },
         credentials: 'include'
       })
