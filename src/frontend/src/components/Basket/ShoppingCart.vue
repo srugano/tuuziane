@@ -85,6 +85,8 @@ const {
   deleteLine
 } = useBasket()
 
+console.log("BASKET : ", basketLines, basketLines.value);
+
 const totalItems = computed(() => basketLines.value.reduce((sum, item) => sum + item.quantity, 0))
 
 // Test method - replace with actual product ID

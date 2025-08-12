@@ -40,7 +40,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken || '',
-            'Authorization': 'VueJengaMarketApp'
+            'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY
           },
           body: JSON.stringify({
             username: this.username,

@@ -14,7 +14,7 @@ onMounted(async () => {
   loading.value = true
   const res = await fetch('/api/v1/osc/products/', {
     method: "GET",
-    headers: {'Authorization': 'VueJengaMarketApp'}
+    headers: {'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY}
   })
   const data = await res.json()
   if(data.status == 'success') {
