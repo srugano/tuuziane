@@ -9,7 +9,6 @@ const djangoStaticPathName = process.env.VUE_APP_DJANGO_STATIC_PATH_NAME
 module.exports = {
   mode: 'development',
   entry: {
-    home: './src/home.js',
     catalogue: './src/catalogue.js',
     registration: './src/registration.js',
     basket: './src/basket.js'

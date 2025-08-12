@@ -1,3 +1,9 @@
+<script setup>
+// This component contains a lot of static HTML.
+// It should be refactored to fetch filter data from an API
+// and dynamically render the filter options.
+</script>
+
 <template>
     <div class="block-split__item block-split__item-sidebar col-auto">
     <div class="sidebar sidebar--offcanvas--mobile">
@@ -32,89 +38,25 @@
                                 <div class="filter__container">
                                     <div class="filter-categories">
                                         <ul class="filter-categories__list">
-                                            {% category_tree depth=2 as tree_categories %}
-                                            {% for tree_category in tree_categories %}
-                                                {% if tree_category.has_children %}
-                                                    <li class="filter-categories__item filter-categories__item--current">
-                                                        <a href="{{ tree_category.url }}">{{ tree_category.name }}</a>
-                                                        <div class="filter-categories__counter">{{ tree_category.item_count }}</div>
-                                                    </li>
-                                                    {% for child_category in tree_category %}
-                                                        <li class="filter-categories__item filter-categories__item--child">
-                                                            <a href="{{ child_category.url }}">{{ child_category.name }}</a>
-                                                            <div class="filter-categories__counter">{{ child_category.item_count }}</div>
-                                                        {% endfor %}
-                                                    {% else %}
-                                                        <li class="filter-categories__item filter-categories__item--parent">
-                                                            <a href="{{ tree_category.url }}">{{ tree_category.name }}</a>
-                                                            <div class="filter-categories__counter">{{ tree_category.item_count }}</div>
-                                                        </li>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </ul>
+                                            <!-- This section should be populated from an API call -->
+                                            <li class="filter-categories__item filter-categories__item--current">
+                                                <a href="#">Power Tools</a>
+                                                <div class="filter-categories__counter">270</div>
+                                            </li>
+                                            <li class="filter-categories__item filter-categories__item--child">
+                                                <a href="#">Engravers</a>
+                                                <div class="filter-categories__counter">21</div>
+                                            </li>
+                                            <li class="filter-categories__item filter-categories__item--child">
+                                                <a href="#">Wrenches</a>
+                                                <div class="filter-categories__counter">79</div>
+                                            </li>
+                                        </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="widget-filters__item">
-                            <div class="filter filter--opened" data-collapse-item>
-                                <button type="button" class="filter__title" data-collapse-trigger>
-                                    Vehicle <span class="filter__arrow">
-                                    <svg width="12px" height="7px">
-                                        <path d="M0.286,0.273 L0.286,0.273 C-0.070,0.629 -0.075,1.204 0.276,1.565 L5.516,6.993 L10.757,1.565 C11.108,1.204 11.103,0.629 10.747,0.273 L10.747,0.273 C10.385,-0.089 9.796,-0.086 9.437,0.279 L5.516,4.296 L1.596,0.279 C1.237,-0.086 0.648,-0.089 0.286,0.273 Z" />
-                                    </svg>
-                                </span>
-                            </button>
-                            <div class="filter__body" data-collapse-content>
-                                <div class="filter__container">
-                                    <div class="filter-vehicle">
-                                        <ul class="filter-vehicle__list">
-                                            <li class="filter-vehicle__item">
-                                                <label class="filter-vehicle__item-label">
-                                                    <span class="filter-list__input input-radio">
-                                                        <span class="input-radio__body">
-                                                            <input class="input-radio__input" name="filter_vehicle" type="radio">
-                                                            <span class="input-radio__circle"></span> </span>
-                                                        </span>
-                                                        <span class="filter-vehicle__item-title">All Parts</span>
-                                                        <span class="filter-vehicle__item-counter">57</span>
-                                                    </label>
-                                                </li>
-                                                <li class="filter-vehicle__item">
-                                                    <label class="filter-vehicle__item-label">
-                                                        <span class="filter-list__input input-radio">
-                                                            <span class="input-radio__body">
-                                                                <input class="input-radio__input"
-                                                                       name="filter_vehicle"
-                                                                       type="radio"
-                                                                       checked="checked">
-                                                                <span class="input-radio__circle"></span> </span>
-                                                            </span>
-                                                            <span class="filter-vehicle__item-title">2011 Ford Focus S</span>
-                                                            <span class="filter-vehicle__item-counter">12</span>
-                                                        </label>
-                                                    </li>
-                                                    <li class="filter-vehicle__item">
-                                                        <label class="filter-vehicle__item-label">
-                                                            <span class="filter-list__input input-radio">
-                                                                <span class="input-radio__body">
-                                                                    <input class="input-radio__input" name="filter_vehicle" type="radio">
-                                                                    <span class="input-radio__circle"></span> </span>
-                                                                </span>
-                                                                <span class="filter-vehicle__item-title">2015 Audi A3</span>
-                                                                <span class="filter-vehicle__item-counter">51</span>
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="filter-vehicle__button">
-                                                        <button type="button" class="btn btn-xs btn-secondary">Add Vehicle</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="widget-filters__item">
                                     <div class="filter filter--opened" data-collapse-item>
                                         <button type="button" class="filter__title" data-collapse-trigger>
@@ -777,13 +719,13 @@
                                         <div class="widget-products__image image image--type--product">
                                             <a href="product-full.html" class="image__body">
                                                 <img class="image__tag"
-                                                     src="{% static 'images/products/product-1-64x64.jpg' %}"
+                                                     src="/images/products/product-1-64x64.jpg"
                                                      alt="">
                                             </a>
                                         </div>
                                         <div class="widget-products__info">
                                             <div class="widget-products__name">
-                                                <a href="product-full.html">Brandix Spark Plug Kit ASR-400</a>
+                                                <a href="product-full.html">Generic Product A</a>
                                             </div>
                                             <div class="widget-products__prices">
                                                 <div class="widget-products__price widget-products__price--current">$19.00</div>
@@ -794,13 +736,13 @@
                                         <div class="widget-products__image image image--type--product">
                                             <a href="product-full.html" class="image__body">
                                                 <img class="image__tag"
-                                                     src="{% static 'images/products/product-2-64x64.jpg' %}"
+                                                     src="/images/products/product-2-64x64.jpg"
                                                      alt="">
                                             </a>
                                         </div>
                                         <div class="widget-products__info">
                                             <div class="widget-products__name">
-                                                <a href="product-full.html">Brandix Brake Kit BDX-750Z370-S</a>
+                                                <a href="product-full.html">Generic Product B</a>
                                             </div>
                                             <div class="widget-products__prices">
                                                 <div class="widget-products__price widget-products__price--current">$224.00</div>
@@ -811,13 +753,13 @@
                                         <div class="widget-products__image image image--type--product">
                                             <a href="product-full.html" class="image__body">
                                                 <img class="image__tag"
-                                                     src="{% static 'images/products/product-3-64x64.jpg' %}"
+                                                     src="/images/products/product-3-64x64.jpg"
                                                      alt="">
                                             </a>
                                         </div>
                                         <div class="widget-products__info">
                                             <div class="widget-products__name">
-                                                <a href="product-full.html">Left Headlight Of Brandix Z54</a>
+                                                <a href="product-full.html">Generic Product C</a>
                                             </div>
                                             <div class="widget-products__prices">
                                                 <div class="widget-products__price widget-products__price--new">$349.00</div>
@@ -829,13 +771,13 @@
                                         <div class="widget-products__image image image--type--product">
                                             <a href="product-full.html" class="image__body">
                                                 <img class="image__tag"
-                                                     src="{% static 'images/products/product-4-64x64.jpg' %}"
+                                                     src="/images/products/product-4-64x64.jpg"
                                                      alt="">
                                             </a>
                                         </div>
                                         <div class="widget-products__info">
                                             <div class="widget-products__name">
-                                                <a href="product-full.html">Glossy Gray 19" Aluminium Wheel AR-19</a>
+                                                <a href="product-full.html">Generic Product D</a>
                                             </div>
                                             <div class="widget-products__prices">
                                                 <div class="widget-products__price widget-products__price--current">$589.00</div>
@@ -846,13 +788,13 @@
                                         <div class="widget-products__image image image--type--product">
                                             <a href="product-full.html" class="image__body">
                                                 <img class="image__tag"
-                                                     src="{% static 'images/products/product-5-64x64.jpg' %}"
+                                                     src="/images/products/product-5-64x64.jpg"
                                                      alt="">
                                             </a>
                                         </div>
                                         <div class="widget-products__info">
                                             <div class="widget-products__name">
-                                                <a href="product-full.html">Twin Exhaust Pipe From Brandix Z54</a>
+                                                <a href="product-full.html">Generic Product E</a>
                                             </div>
                                             <div class="widget-products__prices">
                                                 <div class="widget-products__price widget-products__price--current">$749.00</div>

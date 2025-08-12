@@ -53,12 +53,14 @@ export default {
           .find(row => row.startsWith('csrftoken='))
           ?.split('=')[1];
 
+
+
         const response = await fetch('/api/v1/osc/register/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken || '',
-            'Authorization': 'VueTuuzianeApp'
+            'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY
           },
           body: JSON.stringify({
             email: this.email,
