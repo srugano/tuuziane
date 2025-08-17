@@ -1,10 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const { VueLoaderPlugin } = require('vue-loader');
-const Dotenv = require('dotenv-webpack');
-require('dotenv').config();
 
-const djangoStaticPathName = process.env.VUE_APP_DJANGO_STATIC_PATH_NAME
+const djangoStaticPathName = process.env.STATIC_PATH_NAME || 'static';
 
 module.exports = {
   mode: 'development',
@@ -25,7 +24,11 @@ module.exports = {
       filename: 'webpack-stats.json'
     }),
     new VueLoaderPlugin(),
-    new Dotenv(),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: JSON.stringify(true),
+      __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false)
+    }),
   ],
   module: {
     rules: [

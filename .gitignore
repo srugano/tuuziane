@@ -143,3 +143,4 @@ apiconfig.ini
 .aider*
 .envrc
 fixtures/images.tar.gz
+test-results.xml

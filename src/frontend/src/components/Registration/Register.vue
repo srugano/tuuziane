@@ -60,7 +60,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken || '',
-            'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY
+            'Authorization': window.VUE_VARS.OSCAR_API_KEY
           },
           body: JSON.stringify({
             email: this.email,

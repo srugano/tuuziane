@@ -48,6 +48,9 @@ DEFAULTS = {
     ),
     # Performance
     "THUMBNAIL_FORCE_OVERWRITE": (bool, False),
+    # Frontend connection settings
+    "OSCAR_API_KEY": (str, "JengaMarketAPIKey"),
+    "API_BASE_URL": (str, "/api/v1/"),
 }
 
 env = SmartEnv(**DEFAULTS)
