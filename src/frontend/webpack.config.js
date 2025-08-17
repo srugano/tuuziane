@@ -10,7 +10,8 @@ module.exports = {
   entry: {
     catalogue: './src/catalogue.js',
     registration: './src/registration.js',
-    basket: './src/basket.js'
+    basket: './src/basket.js',
+    homepage: './src/homepage.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist/bundles/'),

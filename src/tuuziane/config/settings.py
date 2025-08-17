@@ -73,6 +73,9 @@ INSTALLED_APPS = [
     "oscar.apps.checkout.apps.CheckoutConfig",
     "oscar.apps.address.apps.AddressConfig",
     "oscar.apps.shipping.apps.ShippingConfig",
+    # Foundational local apps that others depend on
+    "tuuziane.apps.shops",
+    # Local Oscar app overrides
     "tuuziane.apps.catalogue.apps.CatalogueConfig",
     "oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig",
     "oscar.apps.communication.apps.CommunicationConfig",

@@ -21,11 +21,11 @@ urlpatterns = [
     path(r"health/", include("health_check.urls")),  # Health check (good practice!)
     path("about/", AboutView.as_view(), name="about"),
     path("contact/", ContactView.as_view(), name="contact"),
-    # path("api/v1/", include("apps.catalogue.urls")),
     path("sentry-debug/", trigger_error),
     path("api/v1/osc/", include("oscarapi.urls")),
-    path("raba/", include(wagtail_urls)),
-    path("", include(apps.get_app_config("oscar").urls[0])),  # type: ignore [attr-defined]
+    path("catalogue/", include(apps.get_app_config("oscar").urls[0])),  # type: ignore [attr-defined]
+    # Wagtail's URL pattern must be last. It will serve your HomePage at the root (/).
+    path("", include(wagtail_urls)),
 ]
 
 if settings.DEBUG:
