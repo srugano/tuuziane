@@ -14,11 +14,10 @@ onMounted(async () => {
   loading.value = true
   const res = await fetch('/api/v1/osc/products/', {
     method: "GET",
-    headers: {'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY}
+    headers: {'Authorization': window.VUE_VARS.OSCAR_API_KEY}
   })
   const data = await res.json()
   if(data.status == 'success') {
-    console.log("List", data)
     products.value = data.data.objects
     pagination.value = data.data.pagination
     filters.value = data.data.filters

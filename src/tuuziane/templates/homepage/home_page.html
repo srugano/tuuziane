@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags webpack_loader %}
+
+{% block layout %}
+    {# This iterates through the blocks you add in the Wagtail admin and renders each one. #}
+    {% for block in page.body %}
+        {% include_block block %}
+    {% endfor %}
+{% endblock layout %}
+
+{% block extra_js %}
+    {# This will load our new homepage-specific JavaScript bundle. #}
+    {% render_bundle 'homepage' %}
+{% endblock extra_js %}

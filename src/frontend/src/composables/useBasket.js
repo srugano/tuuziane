@@ -29,14 +29,14 @@ export function useBasket() {
       const response = await fetch(API_BASE, {
         credentials: 'include',
         headers: {
-          'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY,
+          'Authorization': window.VUE_VARS.OSCAR_API_KEY,
         }
       })
       const data = await handleResponse(response)
       basketLines.value = data.lines
-      basketTotal.value = data.total
-      basketShipping.value = data.shipping || 0
-      basketTax.value = data.tax || 0
+      basketTotal.value = data.total_incl_tax
+      basketShipping.value = data.shipping_incl_tax || 0
+      basketTax.value = data.total_tax || 0
     } catch (err) {
       error.value = 'Failed to load basket'
     } finally {
@@ -51,7 +51,7 @@ export function useBasket() {
         headers: {
           'Content-Type': 'application/json',
           'X-CSRFToken': getCookie('csrftoken'),
-          'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY,
+          'Authorization': window.VUE_VARS.OSCAR_API_KEY,
         },
         body: JSON.stringify({
           url: `/api/v1/osc/products/${productId}/`,
@@ -73,7 +73,7 @@ export function useBasket() {
         headers: {
           'Content-Type': 'application/json',
           'X-CSRFToken': getCookie('csrftoken'),
-          'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY
+          'Authorization': window.VUE_VARS.OSCAR_API_KEY
         },
         body: JSON.stringify({ quantity: line.quantity }),
         credentials: 'include'
@@ -91,7 +91,7 @@ export function useBasket() {
         method: 'DELETE',
         headers: {
           'X-CSRFToken': getCookie('csrftoken'),
-          'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY
+          'Authorization': window.VUE_VARS.OSCAR_API_KEY
         },
         credentials: 'include'
       })

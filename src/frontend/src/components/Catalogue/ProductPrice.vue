@@ -32,7 +32,7 @@ const fetchPriceData = async (urlToFetch) => {
   try {
     const res = await fetch(urlToFetch, {
       method: "GET",
-      headers: { 'Authorization': process.env.VUE_APP_DJANGO_OSCAR_API_KEY }
+      headers: { 'Authorization': window.VUE_VARS.OSCAR_API_KEY }
     });
 
     if (!res.ok) {
@@ -42,11 +42,9 @@ const fetchPriceData = async (urlToFetch) => {
     }
 
     const data = await res.json();
-    console.log("PRICE DATA FETCHED:", data);
     priceData.value = data; // Update the reactive ref with the fetched data
 
   } catch (err) {
-    console.error("Fetch error:", err);
     error.value = err.message || "An unknown error occurred during fetch.";
   } finally {
     loading.value = false; // Always set loading to false when done

@@ -73,6 +73,9 @@ INSTALLED_APPS = [
     "oscar.apps.checkout.apps.CheckoutConfig",
     "oscar.apps.address.apps.AddressConfig",
     "oscar.apps.shipping.apps.ShippingConfig",
+    # Foundational local apps that others depend on
+    "tuuziane.apps.shops",
+    # Local Oscar app overrides
     "tuuziane.apps.catalogue.apps.CatalogueConfig",
     "oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig",
     "oscar.apps.communication.apps.CommunicationConfig",
@@ -154,6 +157,7 @@ TEMPLATES = [
                 "oscar.apps.communication.notifications.context_processors.notifications",
                 "oscar.core.context_processors.metadata",
                 "tuuziane.context_processors.oscar_shop_tagline",
+                "tuuziane.config.vue_env.vue_env",
             ],
         },
     },
@@ -393,6 +397,7 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 }
 OSCARAPI_PRODUCT_FIELDS = ["url", "id", "upc", "title", "price", "stockrecords", "images"]
 OSCARAPI_ENABLE_REGISTRATION = True
+OSCARAPI_BASKET_SERIALIZER = "tuuziane.apps.core.serializers.BasketSerializer"
 
 APPEND_SLASH = True
 
@@ -410,6 +415,13 @@ WEBPACK_LOADER = {
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "tuuziane.apps.core.pagination.StandardPagination",
+}
+
+VUE_VARS = {
+    "OSCAR_API_KEY": env("OSCAR_API_KEY"),
+    "API_BASE_URL": env("API_BASE_URL"),
+    "APP_NAME": OSCAR_SHOP_NAME,
+    "STATIC_PATH_NAME": env("STATIC_PATH_NAME"),
 }
 
 

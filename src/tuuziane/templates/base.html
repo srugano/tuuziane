@@ -11,6 +11,10 @@
                 {{ shop_name }} - {{ OSCAR_SHOP_TAGNILE }}
             {% endblock title %}
         </title>
+        {{ VUE_VARS|json_script:"vue-vars" }}
+        <script>
+          window.VUE_VARS = JSON.parse(document.getElementById('vue-vars').textContent);
+        </script>
         <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
         <!-- fonts -->
         <link rel="stylesheet"
@@ -84,5 +88,6 @@
         <script src="{% static 'vendor/select2/js/select2.min.js' %}"></script>
         <script src="{% static 'js/number.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
+        {% block extra_js %}{% endblock %}
     </body>
 </html>
